@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SolveEquations</title>
+</head>
+<style type="text/css">
+	input{
+		height: 1em;
+		width: 2em;
+	}
+	#plot_eqn{
+		height: 1em;
+		width: 10em;
+	}
+</style>
+<script type="text/javascript">
+function LinearSolve() {
+  x1 = document.getElementById("Linear_x1").value;
+  x2 = document.getElementById("Linear_x2").value;
+  x3 = document.getElementById("Linear_x3").value;
+  x4 = document.getElementById("Linear_x4").value;
+  v1 = document.getElementById("Linear_v1").value;
+  v2 = document.getElementById("Linear_v2").value;
+  data_to_send = {"x1":x1,"x2":x2,"x3":x3,"x4":x4,"v1":v1,"v2":v2};
+
+  xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(){
+  	if (xhr.readyState == 4 && xhr.status == 200){
+	  	value = xhr.response;
+	    res = document.getElementById("LinearResult");
+	    res.innerHTML = "x = " + value["x"] +" and y = " + value["y"];
+	}
+  }
+  xhr.open('POST', '/solveLinear',true);
+  xhr.responseType = 'json';
+  xhr.setRequestHeader("Content-Type", 'application/json');
+  xhr.send(JSON.stringify(data_to_send));      
+}
+
+function QuadSolve() {
+  x1 = document.getElementById("quad_x1").value;
+  x2 = document.getElementById("quad_x2").value;
+  x3 = document.getElementById("quad_x3").value;
+  data_to_send = {"x1":x1,"x2":x2,"x3":x3};
+  xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(){
+
+  	if (xhr.readyState == 4 && xhr.status == 200){
+	  	value = xhr.response;
+	    res = document.getElementById("QuadResult");
+	    res.innerHTML = "x = " + xhr.response["x1"] + " and " + xhr.response["x2"]; 
+	}
+  }
+  xhr.open('POST', '/solveQuad',true);
+  xhr.responseType = 'json';
+  xhr.setRequestHeader("Content-Type", 'application/json');
+  xhr.send(JSON.stringify(data_to_send));      
+}
+
+
+function Plot() {
+  eqn = document.getElementById("plot_eqn").value;
+  data_to_send = {"eqn":eqn};
+  xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(){
+    if (xhr.readyState == 4 && xhr.status == 200){
+        img = document.getElementById('img_plot');
+        url = window.URL || window.webkitURL;
+        img.src = url.createObjectURL(xhr.response);
+        img.style.display = "inline";
+
+        clear_button = document.getElementById("clear_button");
+        clear_button.style.display = "inline";
+
+   	}
+}
+xhr.open('POST', '/solvePlot',true);
+xhr.responseType = 'blob';
+xhr.setRequestHeader("Content-Type", 'application/json');
+xhr.send(JSON.stringify(data_to_send));      
+}
+
+function ClearButton(){
+	img = document.getElementById("img_plot");
+    img.style.display = "none";
+    clear_button = document.getElementById("clear_button");
+    clear_button.style.display = "none";
+}
+</script>
+<body>
+<div>
+	Solve Linear Equations<br>
+	<input type="text" id="Linear_x1"/><label>x</label> 
+	<label>+</label>
+	<input type="text" id="Linear_x2"/><label>y</label> 
+	<label>=</label><input type="text" id="Linear_v1"/>
+	<br>
+	<input type="text" id="Linear_x3"/><label>x</label> 
+	<label>+</label>
+	<input type="text" id="Linear_x4"/><label>y</label>
+	<label>=</label><input type="text" id="Linear_v2"/>
+	<br>
+	<button onclick="LinearSolve()">Solve</button>
+	<div id="LinearResult"></div>
+</div>
+
+<div>
+	Solve Quadratic Equations <br>
+	<input type="text" id="quad_x1"/><label>x<sup>2</sup></label> 
+	<label>+</label>
+	<input type="text" id="quad_x2"/><label>x</label> 
+	<label>+</label>
+	<input type="text" id="quad_x3"/><label>=</label> 
+	<label>0</label>
+	<br>
+	<button onclick="QuadSolve()">Solve</button>
+	<div id="QuadResult"></div>
+</div>
+
+<div>
+	Plot graphs for Equations
+	<input type="text" id="plot_eqn"/>
+	<button onclick="Plot()">Plot</button>
+	<br><br>
+	<img src="" id="img_plot"/>
+	<br>
+	<button style="display: none" onclick="ClearButton()" id="clear_button">Clear</button>
+</div>
+
+</body>
+</html>
