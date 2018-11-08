@@ -1,12 +1,16 @@
 from flask import Flask, render_template,request,send_file
+from werkzeug import secure_filename
 import numpy as np
 import json
 import cmath
 from io import BytesIO 
 import matplotlib.pyplot as plt  
+import os
 
+UPLOAD_FOLDER = './static/OCR_img/'
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
  
 def solve_linear(data):
     a = np.array([[float(data["x1"]),float(data["x2"])],[float(data["x3"]),float(data["x4"])]])
@@ -65,5 +69,14 @@ def plot_eqn():
     #return json.dumps(result)
     return send_file(buf, mimetype="image/png")
  
+@app.route('/uploader', methods = ['GET', 'POST'])
+def upload_file():
+   if request.method == 'POST':
+      f = request.files['file']
+      fname = secure_filename(f.filename)
+      f.save(UPLOAD_FOLDER+fname)
+      return render_template('SolveEquations.html', filename="static/OCR_img/"+fname)
+  
+    
 if __name__ == "__main__":
     app.run()
