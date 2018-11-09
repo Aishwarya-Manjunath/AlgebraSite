@@ -6,6 +6,7 @@ import cmath
 from io import BytesIO 
 import matplotlib.pyplot as plt  
 import os
+from quiz import select_questions
 
 UPLOAD_FOLDER = './static/OCR_img/'
 
@@ -76,7 +77,32 @@ def upload_file():
       fname = secure_filename(f.filename)
       f.save(UPLOAD_FOLDER+fname)
       return render_template('SolveEquations.html', filename="static/OCR_img/"+fname)
-  
-    
+
+@app.route("/Quiz")
+def take_quiz():
+    return render_template("quiz.html")
+
+
+@app.route("/QuizStart",methods=['GET','POST'])
+def start_quiz():
+    questions=select_questions()
+    print(questions)
+    return json.dumps(questions)
+
+@app.route("/quiz_results",methods=['GET','POST'])
+def results_quiz():
+    data = request.json
+    sizes = [int(data["correct_ans"]),5-int(data["correct_ans"])]
+    print(sizes)
+    labels = ["Correct = "+str(sizes[0]),"Wrong = "+str(sizes[1])]
+    colors = ["green","red"]
+    plt.pie(sizes, labels=labels, colors=colors)
+    plt.title("Performance plot")
+    buf = BytesIO()
+    plt.savefig(buf, format="png")
+    buf.seek(0)
+    plt.close()
+    return send_file(buf, mimetype="image/png")
+
 if __name__ == "__main__":
     app.run()

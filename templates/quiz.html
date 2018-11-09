@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<script type="text/javascript">
+
+function view_soln(){
+				for(i=0;i<5;i++){
+					q = document.createElement("p");
+					q.innerHTML = "Q" + (i+1).toString()+")"+ quest_arr[i.toString()]["question"];
+	        		p = document.createElement("p");
+	        		p.innerHTML = "Answer = "+ quest_arr[i.toString()]["rationale"];
+	        		value = quest_arr[i.toString()]["correct"];
+	        		if(document.getElementById(i.toString() + "_" + value).checked){
+	        			p.style.color = "green";
+	        			q.style.color = "green";
+	        		}
+	        		else{
+	        			p.style.color = "red";
+	        			q.style.color = "red";
+	        		}
+	        		soln_div.appendChild(q);
+	        		soln_div.appendChild(p);
+	        	}
+
+}
+
+function view_results(correct_ans){
+  console.log(correct_ans);
+  data_to_send = {"correct_ans":correct_ans};
+  xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(){
+    if (xhr.readyState == 4 && xhr.status == 200){
+        img = document.createElement('img');
+        url = window.URL || window.webkitURL;
+        img.src = url.createObjectURL(xhr.response);
+        img.style.display = "inline";
+
+        document.body.appendChild(img);
+
+        soln_div = document.createElement("div");
+        document.body.appendChild(soln_div);
+		retake = document.createElement("button");
+		soln = document.createElement("button");
+		soln.innerHTML = "View soln";
+		soln.id = "solnbtn";
+		soln.onclick = function viewSoln(){
+			document.body.removeChild(soln);
+			view_soln();
+		}  
+		retake.innerHTML = "Retake Quiz";
+		retake.onclick = function retakequiz(){
+			document.body.removeChild(img);
+			document.body.removeChild(soln_div);
+			document.body.removeChild(retake);
+			if(document.getElementById("solnbtn")){
+				document.body.removeChild(soln);
+			}
+			document.body.removeChild(main_div);
+			start_quiz();
+		}
+
+		document.body.appendChild(retake);
+		document.body.appendChild(soln);
+
+
+       
+   	}
+
+
+
+  }
+xhr.open('POST', '/quiz_results',true);
+xhr.responseType = 'blob';
+xhr.setRequestHeader("Content-Type", 'application/json');
+xhr.send(JSON.stringify(data_to_send)); 
+}
+
+
+
+function display_questions(quest_arr){
+			main_div = document.createElement("div");
+	        for(i=0;i<5;i++){
+	        	p = document.createElement("p");
+	        	p.innerHTML = "Q" + (i+1).toString()+")"+ quest_arr[i.toString()]["question"];
+	        	main_div.appendChild(p);
+
+	        	for(j=0;j<quest_arr[i.toString()]["options"].length;j++){
+	        		op = document.createElement("input");
+	        		op.type = "radio";
+	        		op.value = i.toString() + "_" + quest_arr[i.toString()]["options"][j][0];
+	        		op.id = i.toString() + "_" + quest_arr[i.toString()]["options"][j][0];
+	        		label = document.createElement("label");
+	        		label.innerHTML = quest_arr[i.toString()]["options"][j];
+	        		main_div.appendChild(op);
+	        		main_div.appendChild(label);
+	        		main_div.appendChild(document.createElement("br"));
+	        	}
+	        }
+	        sub = document.createElement("button");
+	        sub.innerHTML = "Evaluate";
+	        sub.onclick = function evaluate(){
+	        	correct_ans = 0;
+				for(i=0;i<5;i++){
+					value = quest_arr[i.toString()]["correct"];
+					console.log(document.getElementById(i.toString() + "_" + value));
+					if(document.getElementById(i.toString() + "_" + value).checked){
+						correct_ans += 1;
+					}
+				}
+				main_div.style.display="none";
+				view_results(correct_ans);
+			}
+	        main_div.appendChild(sub);
+	        document.body.appendChild(main_div);
+}
+
+function start_quiz(){
+	xhr = new XMLHttpRequest();
+  	xhr.onreadystatechange = function(){
+  		document.getElementById("startbtn").style.display="none";
+	    if (xhr.readyState == 4 && xhr.status == 200){
+	    	quest_arr = JSON.parse(xhr.responseText);
+	        display_questions(quest_arr);
+		}    
+	}
+	xhr.open('GET', '/QuizStart',true);
+	xhr.send(); 
+}
+</script>
+<body>
+<a href="/">Home</a>
+<button onclick="start_quiz()" id="startbtn">Start Quiz</button>
+</body>
+</html>
