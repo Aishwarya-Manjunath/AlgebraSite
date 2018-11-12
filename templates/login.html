@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+        <script type="text/javascript" src="../static/js/angular.min.js"></script>
+        <script type="text/javascript" src="../static/js/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+    <div class="container">
+        <div class="info">
+            <h1>Learn Algebra!</h1>
+        </div>
+        </div>
+        <div ng-app="loginForm" class="form">
+
+            <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>
+
+            <form class="register-form" name="register" ng-controller="validateRegisterCtrl" novalidate>
+                <input type="text" name="user" ng-model="user" placeholder="username" required />
+                <span class="message" ng-show="register.user.$touched && register.user.$error.required">Username is required.</span>
+
+                <input type="password" name="password" ng-model="password" placeholder="password" minlength="4" required=""/>
+                <span class="message" ng-show="register.password.$error.minlength">Password should atleast be 4 characters.</span>
+                <span class="message" ng-show="register.password.$touched && register.password.$error.required">Password is required.</span>
+
+                <input type="email" name="email" ng-model="email" placeholder="email-id" required>
+                <span class="message" ng-show="register.email.$touched && register.email.$error.required">Email is required.</span>
+                <span class="message" ng-show="register.email.$error.email">Invalid email address.</span>
+
+                <button type="submit" ng-disabled="register.user.$dirty && register.user.$invalid || register.email.$dirty && register.email.$invalid || register.password.$dirty && register.password.$invalid">create</button>
+                <p class="message">Already registered? <a href="#">Sign In</a></p>
+            </form>
+
+            <form class="login-form" name="login" ng-controller="validateLoginCtrl" novalidate>
+                <input type="text" name="user" ng-model="user" placeholder="username" required />
+                <span class="message" ng-show="login.user.$touched && login.user.$error.required">Username is required.</span>
+
+                <input type="password" name="password" ng-model="password" placeholder="password" minlength="4" required/>
+                <span class="message" ng-show="login.password.$error.minlength">Password should atleast be 4 characters.</span>
+                <span class="message" ng-show="login.password.$touched && login.password.$error.required">Password is required.</span>
+
+                <button type="submit" ng-disabled="login.user.$dirty && login.user.$invalid || login.password.$dirty && login.password.$invalid">login</button>
+                <p class="message">Not registered? <a href="#">Create an account</a></p>
+            </form>
+
+        </div>
+        <script>
+            $(".message a").click(function() {
+                $("form").animate({ height: "toggle", opacity: "toggle" }, "slow");
+            });
+
+            var app = angular.module('loginForm', []);
+            app.controller('validateRegisterCtrl', function($scope) {
+                console.log($scope);
+            });
+            app.controller('validateLoginCtrl', function($scope) {
+                console.log($scope);
+            });
+        </script>
+    </body>
+</html>
