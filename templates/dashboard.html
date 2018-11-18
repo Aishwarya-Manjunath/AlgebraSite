@@ -1,47 +1,285 @@
 <!DOCTYPE html>
 <html ng-app="AlgebraSite">
 <head>
+	<!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<title>dashboard</title>
 	<style type="text/css">
-		#menu{
-			position: fixed;
-			right: 0em;
-			top:0em;
-			margin: 1em;
-		}
-		#logo{
-			position: fixed;
-			left:1em;
-			top:0em;
-			font-family: Courier;
-			font-size: 2.2em;
-			color: white;
-			margin: 0.5em;
-		}
-		span{
-			font-family: Courier;
-			font-size: 1.4em;
-			color: white;
+		body {background:url(http://i.hizliresim.com/68k46P.png)center center fixed no-repeat; background-size:cover; margin:0; padding:0; background-color: #2F3242;}
 
-		}
-		span:hover{ 
-    		text-decoration: underline;
-		}
-		a{
-			text-decoration:none; 
-		}
-		body {
-		    background-color: black;
-		}
+		.m-red {background:#EF3B3A; color:#fff; text-decoration:none;}
+
+		.m-nav {width:100%; min-width:600px; height:55px; display:inline-block; text-align:right;}
+
+		.m-nav input[type="text"] {float:right; background:rgba(255,255,255,0.3); border:none; padding:8px; outline:none; color:#fff; margin-top:10px; margin-right:10px; font-family:"Roboto",Arial sans-serif; height:20px; display:inline-block; transition:0.5s ease all; width:30%; min-width:200px; max-width:600px;}
+
+		.m-nav input[type="text"]:hover {background:rgba(255,255,255,0.5); transition:0.5s ease all;}
+
+		.m-nav input[type="text"]:focus {background:#fff; color:#333; transition:0.5s ease all;}
+
+		.m-nav input::-webkit-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
+
+		.m-nav input::-moz-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
+
+		.m-nav input:-moz-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
+
+		.m-nav input::-o-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
+
+		.m-nav li {list-style:none; float:left; display:inline-block;}
+
+		.m-nav li a {text-decoration:none; padding:6px 9px; transition:0.70s ease all; margin-top:7px; margin-left:7px; display:inline-block; cursor:pointer;}
+
+		.m-nav li a:hover {background:rgba(255,255,255,0.3); transition:0.70s ease all;}
+svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -400px;
+}
+.message-box {
+  height: 200px;
+  width: 380px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: 50px;
+  color: #FFF;
+  font-family: Roboto;
+  font-weight: 300;
+}
+.message-box h1 {
+  font-size: 60px;
+  line-height: 46px;
+  margin-bottom: 40px;
+}
+.buttons-con .action-link-wrap {
+  margin-top: 40px;
+}
+.buttons-con .action-link-wrap a {
+  background: #68c950;
+  padding: 8px 25px;
+  border-radius: 4px;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s linear;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 10px
+}
+.buttons-con .action-link-wrap a:hover {
+  /*background: #5A5C6C;*/
+  /*background: #EF4A5B;*/
+  background: #EF3B3A;
+  color: #fff;
+}
+
+.buttons-con1 .action-link-wrap1 {
+  margin-top: 40px;
+}
+.buttons-con1 .action-link-wrap1 a {
+  background: #68c950;
+  padding: 8px 25px;
+  border-radius: 4px;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s linear;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 10px
+}
+.buttons-con1 .action-link-wrap1 a:hover {
+  /*background: #5A5C6C;*/
+  /*background: #EF4A5B;*/
+  /*background: #007FB2;*/
+  background:rgba(255,255,255,0.3); 
+  transition:0.70s ease all;
+  color: #fff;
+}
+
+#Polygon-1 , #Polygon-2 , #Polygon-3 , #Polygon-4 , #Polygon-4, #Polygon-5 {
+  animation: float 1s infinite ease-in-out alternate;
+}
+#Polygon-2 {
+  animation-delay: .2s; 
+}
+#Polygon-3 {
+  animation-delay: .4s; 
+}
+#Polygon-4 {
+  animation-delay: .6s; 
+}
+#Polygon-5 {
+  animation-delay: .8s; 
+}
+
+@keyframes float {
+	100% {
+    transform: translateY(20px);
+  }
+}
+@media (max-width: 450px) {
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -190px;
+  }
+  .message-box {
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -190px;
+    text-align: center;
+  }
+}
+.material-icons{
+	color: white;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 80px;
+    /*background-color: #FFCD3C;*/
+    color: #5A5C6C;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%; 
+    margin-left: -40px;
+    margin-top: 20px;
+    font-family: Roboto;
+    font-size: 14px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    background:rgba(255,255,255,0.3); 
+  	/*transition:0.70s ease all;*/
+  	color: #fff;
+}
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%; 
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgba(255,255,255,0.3) transparent;
+  	/*transition:0.70s ease all;*/
+  	color: #fff;
+}
+
+/*.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #EF3B3A;
+    min-width: 60px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    right: 0;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}*/
 	</style>
 </head>
 <body>
-<div id="logo">Math Website</div>
-<div id = "menu">
-	<a href="/SolveEquations"><span id="Solve">Solve Equations</span></a>&nbsp;&nbsp;&nbsp;
-	<a href="/Quiz" ><span id="Quiz">Take Quiz</span></a>&nbsp;&nbsp;&nbsp;
-	<a href=""><span id="Help">Help</span></a>&nbsp;&nbsp;&nbsp;
-	<a href=""><span id="Contact">Contact</span></a>&nbsp;&nbsp;
+  <center>
+    <div class="m-nav m-red">
+      <div style="float: right;">
+      	<input type="text" placeholder="Search Box" style="float: left;">
+      	<li style="margin-right: 10px;">
+      	<!--<div class="dropdown">-->
+      		<a>
+      			<div class="tooltip"><i style="font-size:27px; float: right;" class="material-icons">face</i>
+      				<span class="tooltiptext">Account</span>
+      			</div>
+      		</a>
+      	<!--<div class="dropdown-content">
+    		<a href="#">Logout</a>
+      	</div>
+      </div>-->
+      </li>
+      <div class="buttons-con1" style="margin-top: 10px; float: right; display: inline">
+    <div class="action-link-wrap1" style="margin-top: 0px">
+            <a href="/" class="link-button" style="float: right; font-family: Roboto;">Logout</a>
+        </div>
+    </div>
+      </div>
+      
+      <li>
+      	<a href="/SolveEquations">
+      		<div class="tooltip"><i style="font-size:27px;" class="material-icons">school</i>
+      			<span class="tooltiptext">Solve</span>
+      		</div>
+      	</a>
+      </li>
+      <li>
+      	<a href="/Quiz">
+      		<div class="tooltip"><i style="font-size:27px;" class="material-icons">create</i>
+      			<span class="tooltiptext">Quiz</span>
+      		</div>
+      	</a>
+  	  </li>
+      <li>
+      	<a>
+      		<div class="tooltip"><i style="font-size:27px;" class="material-icons">contact_support</i>
+      			<span class="tooltiptext">Help</span>
+      		</div>
+      	</a>
+      </li>
+    </div>
+  </center>
+  <svg width="380px" height="500px" viewBox="0 0 837 1045" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M353,9 L626.664028,170 L626.664028,487 L353,642 L79.3359724,487 L79.3359724,170 L353,9 Z" id="Polygon-1" stroke="#007FB2" stroke-width="6" sketch:type="MSShapeGroup"></path>
+        <path d="M78.5,529 L147,569.186414 L147,648.311216 L78.5,687 L10,648.311216 L10,569.186414 L78.5,529 Z" id="Polygon-2" stroke="#EF3B3A" stroke-width="6" sketch:type="MSShapeGroup"></path>
+        <path d="M773,186 L827,217.538705 L827,279.636651 L773,310 L719,279.636651 L719,217.538705 L773,186 Z" id="Polygon-3" stroke="#795D9C" stroke-width="6" sketch:type="MSShapeGroup"></path>
+        <path d="M639,529 L773,607.846761 L773,763.091627 L639,839 L505,763.091627 L505,607.846761 L639,529 Z" id="Polygon-4" stroke="#F2773F" stroke-width="6" sketch:type="MSShapeGroup"></path>
+        <path d="M281,801 L383,861.025276 L383,979.21169 L281,1037 L179,979.21169 L179,861.025276 L281,801 Z" id="Polygon-5" stroke="#36B455" stroke-width="6" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>
+<div class="message-box">
+  <h1>Algebra Site</h1>
+  <p>A great platform to test your mental abilities and challenge your peers. </p>
+  <p>  Get your equations solved, quiz yourself, know where you stand and improve your intelluctual capabilities!</p>
+  <div class="buttons-con">
+    <div class="action-link-wrap">
+      <a href="/SolveEquations" class="link-button link-back-button">Solve Equations</a>
+      <a href="/Quiz" class="link-button">Quiz Yourself</a>
+    </div>
+  </div>
 </div>
 </body>
 </html>
