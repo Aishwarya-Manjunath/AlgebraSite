@@ -5,6 +5,7 @@ from flask_bootstrap import Bootstrap
 from flask_pymongo import PyMongo
 from werkzeug import secure_filename
 import numpy as np
+from random import randint
 import json
 import cmath
 from io import BytesIO 
@@ -16,14 +17,20 @@ app = Flask(__name__)
 app.config.update(
     DEBUG = True,
     SECRET_KEY = 'secret_xxx',
-    UPLOAD_FOLDER = './static/OCR_img/'
+    UPLOAD_FOLDER = './static/OCR_img/',
+    MONGO_DBNAME = 'algebrasite',
+    MONGO_URI = 'mongodb://127.0.0.1:27017/algebrasite'
 )
+
+mongo = PyMongo(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
 
 Bootstrap(app)
+
+id_counter = 1
 
 class User(UserMixin):
 
@@ -52,35 +59,29 @@ def solve_quad(data):
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
+    global id_counter
+    if request.method == 'POST' and request.form['login'] == '1':
        username = request.form['user']
        password = request.form['password']
-       if username == "admin" and password == "password":
-          id = "abc"
-          user = User(id)
-          login_user(user)
-          return redirect("/")
+       userd = mongo.db.users.find_one({'_id' : username})
+       if userd != None :
+          passwordd = userd['pass']
+          if passwordd == password:
+             id = id_counter
+             id_counter += 1
+             user = User(id)
+             login_user(user)
+             return redirect("/")
+       else:
+          return render_template("login.html") 
+    elif request.method == 'POST' and request.form['login'] == '2':
+       username = request.form['user']
+       password = request.form['password']
+       email = request.form['password']
+       mongo.db.users.insert({ '_id' : username, 'pass' : password, 'email' : email})
+       return render_template("login.html")
     else:
        return render_template("login.html")
-
-@app.route("/memo", methods=['GET','POST'])
-@login_required
-def memo():
-    if request.method == 'POST':
-        value = request.form["text"]
-        print(value)
-    return render_template("memo.html")
-
-@app.route("/")
-@login_required
-def dashboard():
-    return render_template("dashboard.html")
-
-@app.route("/logout")
-@login_required
-def logout():
-    logout_user()
-    return render_template("login.html")
 
 @app.errorhandler(401)
 def page_not_found(e):
@@ -89,6 +90,25 @@ def page_not_found(e):
 @login_manager.user_loader
 def load_user(userid):
     return User(userid)
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return render_template("login.html")
+
+@app.route("/")
+@login_required
+def dashboard():
+    return render_template("dashboard.html")
+
+@app.route("/memo", methods=['GET','POST'])
+@login_required
+def memo():
+    if request.method == 'POST':
+        value = request.form["text"]
+        print(value)
+    return render_template("memo.html")
 
 @app.route("/SolveEquations")
 @login_required
