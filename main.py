@@ -32,6 +32,10 @@ def solve_quad(data):
 def login():
     return render_template("login.html")
 
+@app.route("/profile")
+def profile():
+    return render_template("profile.html")
+
 @app.route("/dashboard")
 def dashboard():
     return render_template("dashboard.html")
@@ -107,6 +111,18 @@ def results_quiz():
     buf.seek(0)
     plt.close()
     return send_file(buf, mimetype="image/png")
+
+@app.route("/edit_info",methods=['GET','POST'])
+def Edit_Info():
+    input_data = {"uni":"hi", "qual": "99", "bio":"mr"}
+    return json.dumps(input_data)
+
+@app.route("/save_info",methods=['GET','POST'])
+def Save_Info():
+    #input_data = {"email":"hi", "phone": "99", "add":"mr"}
+    input_data1 = request.json
+    print(input_data1)
+    return json.dumps(input_data1)
 
 if __name__ == "__main__":
     app.run()
