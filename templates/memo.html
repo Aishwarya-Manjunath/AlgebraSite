@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../static/css/memo.css" />
+        <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" />
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <center>
+            <div class="m-nav m-red">
+                <div style="float: right;">
+                    <input type="text" placeholder="Search Box" style="float: left;">
+                    <li style="margin-right: 10px;">
+                        <a>
+                            <div class="tooltip"><i style="font-size:27px; float: right;" class="material-icons">face</i>
+                            <span class="tooltiptext">Account</span>
+                            </div>
+                        </a>
+                    </li>
+                    <div class="buttons-con1" style="margin-top: 10px; float: right; display: inline">
+                        <div class="action-link-wrap1" style="margin-top: 0px">
+                            <a href="/logout" class="link-button" style="float: right; font-family: Roboto;">Logout</a>
+                        </div>
+                    </div>
+                </div>
+                <li>
+                    <a href="/SolveEquations">
+                        <div class="tooltip"><i style="font-size:27px;" class="material-icons">school</i>
+                            <span class="tooltiptext">Solve</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Quiz">
+                        <div class="tooltip"><i style="font-size:27px;" class="material-icons">create</i>
+                            <span class="tooltiptext">Quiz</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <div class="tooltip"><i style="font-size:27px;" class="material-icons">contact_support</i>
+                            <span class="tooltiptext">Help</span>
+                        </div>
+                    </a>
+                </li>
+            </div>
+        </center>
+        <center><h2 class="outerText">MEMO</h2></center>
+        <div class="notepad">
+            <div class="top"></div>
+            <div id="memo" class="paper" contenteditable="False">
+                {% autoescape false %}
+                    {{text}}
+                {% endautoescape %}
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="edit" onclick="notepad.editContent()">Edit</button>
+            <button id="save" onclick="notepad.saveContent()" disabled>Save</button>
+        </div>
+        <script src="../static/js/memo.js"></script>
+    </body>
+</html>

@@ -32,7 +32,7 @@
   background: #f2f2f2;
   width: 100%;
   border: 0;
-  margin: 0 0 15px;
+  margin: 10px 0 10px;
   padding: 15px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
@@ -45,8 +45,9 @@
   outline: 0;
   background: #EF3B3A;
   width: 100%;
+  margin-top: 15px;
   border: 0;
-  padding: 15px;
+  padding: 10px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -57,8 +58,7 @@
   cursor: pointer;
 }
 .form .message {
-  padding: 15px;
-  color: #b3b3b3;
+  color: black;
   font-size: 12px;
 }
 .form .message a {
@@ -105,20 +105,10 @@
 }
 
 body {
-  background: #ccc;
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-body:before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: block;
-  background: rgba(255, 255, 255, 0.8);
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  background-color: whitesmoke;
+  font-family: "Roboto", sans-serif;
 }
 
 input.ng-touched {
