@@ -28,7 +28,7 @@ function view_soln(){
 
 function view_results(correct_ans){
   console.log(correct_ans);
-  data_to_send = {"correct_ans":correct_ans};
+  data_to_send = {"correct_ans":correct_ans,"wrong_quest":wrong_quest};
   xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
     if (xhr.readyState == 4 && xhr.status == 200){
@@ -102,13 +102,18 @@ function display_questions(quest_arr){
 	        sub.innerHTML = "Evaluate";
 	        sub.onclick = function evaluate(){
 	        	correct_ans = 0;
+			wrong_quest = [];
 				for(i=0;i<5;i++){
 					value = quest_arr[i.toString()]["correct"];
 					console.log(document.getElementById(i.toString() + "_" + value));
 					if(document.getElementById(i.toString() + "_" + value).checked){
 						correct_ans += 1;
 					}
+					else{
+						wrong_quest.push(quest_arr[i.toString()]["question"]);
+					}
 				}
+				console.log(wrong_quest);
 				main_div.style.display="none";
 				view_results(correct_ans);
 			}

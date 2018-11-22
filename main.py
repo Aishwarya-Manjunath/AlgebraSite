@@ -11,6 +11,8 @@ import cmath
 from io import BytesIO 
 import matplotlib.pyplot as plt  
 import os
+import datetime
+import time
 from quiz import select_questions
 
 app = Flask(__name__)
@@ -81,7 +83,7 @@ def login():
     elif request.method == 'POST' and request.form['login'] == '2':
        username = request.form['user']
        password = request.form['password']
-       email = request.form['password']
+       email = request.form['email']
        mongo.db.users.insert({ '_id' : username, 'pass' : password, 'email' : email})
        return render_template("login.html")
     else:
@@ -195,7 +197,12 @@ def start_quiz():
 @app.route("/quiz_results",methods=['GET','POST'])
 @login_required
 def results_quiz():
+    global username
     data = request.json
+    print(data["wrong_quest"])
+    mongo.db.quiz.insert_one({"username":username["_id"],"score":int(data["correct_ans"]),"timestamp":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())})
+
+    mongo.db.recommend.update({"username":username["_id"]},{"username":username["_id"],"questions":data["wrong_quest"]}, upsert=True)
     sizes = [int(data["correct_ans"]),5-int(data["correct_ans"])]
     print(sizes)
     labels = ["Correct = "+str(sizes[0]),"Wrong = "+str(sizes[1])]
