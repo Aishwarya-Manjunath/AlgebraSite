@@ -1,19 +1,7 @@
 localStorage['text'] = '';
 
 window.onbeforeunload = function(){
-    alert("HELLO");
-    var req = new XMLHttpRequest();
-    req.open('POST', '/memo', false);
-    req.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200) {
-            console.log("DONE!");
-        } 
-        else {
-            console.log("Trying..");
-        }
-    }
-    req.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-    req.send("text=" + localStorage['text']);
+    notepad.sendToBackEnd();
     return 'Are you sure you want to leave?';
 };
 
@@ -38,5 +26,21 @@ notepad = {
             localStorage['text'] = innerText;
             //alert(localStorage['text']);
         }
+    },
+    sendToBackEnd: function(){
+        var req = new XMLHttpRequest();
+        req.open('POST', '/memo', false);
+        req.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200) {
+                console.log("DONE!");
+            } 
+            else {
+                console.log("Trying..");
+            }
+        }
+        req.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        req.send("text=" + localStorage['text']); 
     }
 };
+
+setInterval(notepad.sendToBackEnd, 600000);

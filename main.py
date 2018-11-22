@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, send_file, jsonify, Response, redirect
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user 
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 from functools import wraps
 from flask_bootstrap import Bootstrap
 from flask_pymongo import PyMongo
@@ -23,6 +23,8 @@ app.config.update(
 )
 
 mongo = PyMongo(app)
+
+username = None
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -60,6 +62,7 @@ def solve_quad(data):
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     global id_counter
+    global username
     if request.method == 'POST' and request.form['login'] == '1':
        username = request.form['user']
        password = request.form['password']
@@ -71,6 +74,7 @@ def login():
              id_counter += 1
              user = User(id)
              login_user(user)
+             username = userd
              return redirect("/")
        else:
           return render_template("login.html") 
@@ -105,10 +109,19 @@ def dashboard():
 @app.route("/memo", methods=['GET','POST'])
 @login_required
 def memo():
-    if request.method == 'POST':
+    global username
+    text = "Scratch Pad!"
+    entry = mongo.db.memo.find_one({'_id' : username})
+    if entry != None:
+        text = entry['text']
+        text = "<br />".join(text.split("\n"))
+    if request.method == 'POST' and username is not None:
         value = request.form["text"]
-        print(value)
-    return render_template("memo.html")
+        print("CHECK", value)
+        entry = mongo.db.memo.find_one({'_id' : username})
+        mongo.db.memo.update({ '_id' : username}, {'text' : value}, upsert=True)
+        text = "<br />".join(value.split("\n"))
+    return render_template("memo.html", text=text)
 
 @app.route("/SolveEquations")
 @login_required
