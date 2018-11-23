@@ -103,6 +103,7 @@ def load_user(userid):
 @app.route("/profile")
 def profile():
     global username
+    input_data = {"university":"", "qualification":"", "biography":""}
     cursor = mongo.db.quiz.find({"username":username["_id"]}).sort("score",pymongo.DESCENDING)
     cursor_account = mongo.db.account.find({"username":username["_id"]})
     quiz_scores = []
