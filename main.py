@@ -15,6 +15,8 @@ import time
 import pymongo
 from quiz import select_questions
 
+UPLOAD_FOLDER = './static/OCR_img/'
+
 app = Flask(__name__)
 app.config.update(
     DEBUG = True,
@@ -100,7 +102,9 @@ def load_user(userid):
 
 @app.route("/profile")
 def profile():
+    global username
     cursor = mongo.db.quiz.find({"username":username["_id"]}).sort("score",pymongo.DESCENDING)
+    cursor_account = mongo.db.account.find({"username":username["_id"]})
     quiz_scores = []
     top_n = 0
     for document in cursor:
@@ -108,7 +112,9 @@ def profile():
           break
         quiz_scores.append(document)
         top_n += 1
-    return render_template("profile.html",user = username["_id"],quiz_scores=quiz_scores)
+    for document1 in cursor_account:
+        input_data=document1
+    return render_template("profile.html",user = username["_id"],quiz_scores=quiz_scores, input_data=input_data)
 
 @app.route("/logout")
 @login_required
@@ -122,7 +128,6 @@ def dashboard():
     return render_template("dashboard.html")
 
 @app.route("/memo", methods=['GET','POST'])
-@login_required
 def memo():
     global username
     text = "Scratch Pad!"
@@ -139,12 +144,10 @@ def memo():
     return render_template("memo.html", text=text)
 
 @app.route("/SolveEquations")
-@login_required
 def SolveEquations():
     return render_template("SolveEquations.html")
 
 @app.route('/solveLinear', methods = ['POST','GET'])
-@login_required
 def Linear():
     data = request.json
     result = solve_linear(data)
@@ -161,7 +164,6 @@ def Quad():
 
 
 @app.route('/solvePlot', methods = ['POST','GET'])
-@login_required
 def plot_eqn():
     data = request.json
     formula = data["eqn"]
@@ -225,15 +227,25 @@ def results_quiz():
 
 @app.route("/edit_info",methods=['GET','POST'])
 def Edit_Info():
-    input_data = {"uni":"hi", "qual": "99", "bio":"mr"}
+    global username
+    #input_data = {"uni":"hi", "qual": "99", "bio":"mr"}
+    cursor_account = mongo.db.account.find({"username":username["_id"]})
+    for document1 in cursor_account:
+        input_data=document1
+    print("helo")
+    print(input_data)
+    #return render_template("profile.html",input_data=input_data)#, user = username["_id"], uni = input_data["university"], qual = input_data["qualification"], bio = input_data["biography"])
     return json.dumps(input_data)
 
 @app.route("/save_info",methods=['GET','POST'])
 def Save_Info():
     #input_data = {"email":"hi", "phone": "99", "add":"mr"}
+    global username
     input_data1 = request.json
+    mongo.db.account.update({"username":username["_id"]},{"username":username["_id"],"university":input_data1["university"],"qualification":input_data1["qualification"],"biography":input_data1["biography"]}, upsert=True)
     print(input_data1)
-    return json.dumps(input_data1)
+    #return render_template("profile.html", input_data1)
+    return json.dumps(input_data1)#, user = username["_id"], uni = input_data1["university"], qual = input_data1["qualification"], bio = input_data1["biography"])
 
 if __name__ == "__main__":
     app.run()

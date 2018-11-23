@@ -528,6 +528,12 @@
   transition-timing-function: line;
 }
 
+h3 {
+			color: black;
+	        font-family: Roboto;
+	        text-align: center;
+}
+
 @media (max-width: 800px) {
 .table2 td:nth-child(4),
 .table2 th:nth-child(4) { display: none; }
@@ -538,15 +544,15 @@
 			obj={
 				display_input: function(input_arr){
 					//console.log(input_arr);
-					document.getElementById("input-email").value = input_arr["uni"];
-					document.getElementById("input-phone").value = input_arr["qual"];
-					document.getElementById("input-address").value = input_arr["bio"];
+					document.getElementById("input-email").value = input_arr["university"];
+					document.getElementById("input-phone").value = input_arr["qualification"];
+					document.getElementById("input-address").value = input_arr["biography"];
 				},
 				display_info: function(info_arr){
 					//console.log(input_arr);
-					document.getElementById("info-email").innerHTML = info_arr["uni"];
-					document.getElementById("info-phone").innerHTML = info_arr["qual"];
-					document.getElementById("info-address").innerHTML = info_arr["bio"];
+					document.getElementById("info-email").innerHTML = info_arr["university"];
+					document.getElementById("info-phone").innerHTML = info_arr["qualification"];
+					document.getElementById("info-address").innerHTML = info_arr["biography"];
 				},
 				editDetails: function(){
 					//alert("Hi");
@@ -570,6 +576,8 @@
   					xhr.onreadystatechange = function(){
   						if (xhr.readyState == 4 && xhr.status == 200){
 	    					input_arr = JSON.parse(xhr.responseText);
+	    					console.log(input_arr);
+	    					//input_arr = input_data
 	        				obj.display_input(input_arr);
 						}    
 					}
@@ -597,7 +605,7 @@
 					var uni_input = document.getElementById("input-email").value;
 					var qual_input = document.getElementById("input-phone").value;
 					var bio_input = document.getElementById("input-address").value;
-					input_to_send = {"uni":uni_input, "qual":qual_input, "bio":bio_input};
+					input_to_send = {"university":uni_input, "qualification":qual_input, "biography":bio_input};
 					xhr = new XMLHttpRequest();
   					xhr.onreadystatechange = function(){
   						if (xhr.readyState == 4 && xhr.status == 200){
@@ -674,17 +682,17 @@
 		    <div class="content">
 		    <div class="info">
 		      <h class="info-type">University</h>
-		      <h id="info-email" class="info-data" style="display: inline;">PES University</h>
+		      <h id="info-email" class="info-data" style="display: inline;">{{input_data["university"]}}</h>
 		      <input id="input-email" class="input-data" type="text" name="user_email" style="display: none; visibility: hidden; margin-left: 8vh;"></input>
 		    </div>
 		    <div class="info">
 		      <h class="info-type">Qualification</h>
-		      <h id="info-phone" class="info-data" style="display: inline;">B.Tech, CSE</h>
+		      <h id="info-phone" class="info-data" style="display: inline;">{{input_data["qualification"]}}</h>
 		      <input id="input-phone" class="input-data" type="text" name="user_phone" style="display: none; visibility: hidden; margin-left: 5vh;"></input>
 		    </div>
 		    <div class="info">
 		      <h class="info-type">Biography</h>
-		      <h id="info-address" class="info-data" style="display: inline;">Love sketching</h>
+		      <h id="info-address" class="info-data" style="display: inline;">{{input_data["biography"]}}</h>
 		      <input id="input-address" class="input-data" type="text" name="user_add" style="display: none; visibility: hidden; margin-left: 8vh;"></input>
 		    </div>
 		    <div id="social-media">
@@ -711,12 +719,11 @@
 		<!--<div id="grey-overlay" style="display:none;">
 		  <img id="profile-picture-full" src="https://gyazo.com/db9f7075f60979081a9da8ec47453bec.png"/>
 		</div>-->
-		<div style="background-color: #D9FAFF; width: 100%">  
+		<div style="background-color: #D9FAFF; width: 100%; height: 50vh;">  
 		  <!--<div class="container1">-->
 		  		<!--<h1><span class="blue">&lt;</span>Table<span class="blue">&gt;</span> <span class="yellow">Responsive</pan></h1>-->
-
 				<table class="table1">
-					<h3>Top 3 scores</h3>
+					<div style="color: black; font-family: Roboto; margin-left: 45vh; margin-top: 2vh; margin-bottom:2vh; font-weight: bold">Top 3 scores</div>
 					<thead>
 						<tr>
 							<th><h1>Sl No</h1></th>
