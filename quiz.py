@@ -20,4 +20,12 @@ def select_questions():
     for i in range(0,no_questions):
         prob_dict[str(i)] = problems[i]
     return prob_dict
+
+
+def sample_questions():
+    problems = np.random.choice(data, no_questions , replace=False)
+    prob_dict = []
+    for i in range(0,no_questions):
+        prob_dict.append(problems[i])
+    return prob_dict
 #select_questions()

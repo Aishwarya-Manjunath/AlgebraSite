@@ -3,261 +3,10 @@
 <head>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<title></title>
-	<style type="text/css">
-		body {background:url(http://i.hizliresim.com/68k46P.png)center center fixed no-repeat; background-size:cover; margin:0; padding:0; background-color: #2F3242;}
-
-		.m-red {background:#EF3B3A; color:#fff; text-decoration:none;}
-
-		.m-nav {width:100%; min-width:600px; height:55px; display:inline-block; text-align:right;}
-
-		.m-nav input[type="text"] {float:right; background:rgba(255,255,255,0.3); border:none; padding:8px; outline:none; color:#fff; margin-top:10px; margin-right:10px; font-family:"Roboto",Arial sans-serif; height:20px; display:inline-block; transition:0.5s ease all; width:30%; min-width:200px; max-width:600px;}
-
-		.m-nav input[type="text"]:hover {background:rgba(255,255,255,0.5); transition:0.5s ease all;}
-
-		.m-nav input[type="text"]:focus {background:#fff; color:#333; transition:0.5s ease all;}
-
-		.m-nav input::-webkit-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
-
-		.m-nav input::-moz-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
-
-		.m-nav input:-moz-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
-
-		.m-nav input::-o-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
-
-		.m-nav li {list-style:none; float:left; display:inline-block;}
-
-		.m-nav li a {text-decoration:none; padding:6px 9px; transition:0.70s ease all; margin-top:7px; margin-left:7px; display:inline-block; cursor:pointer;}
-
-		.m-nav li a:hover {background:rgba(255,255,255,0.3); transition:0.70s ease all;}
-
-.buttons-con1 .action-link-wrap1 {
-  margin-top: 40px;
-}
-.buttons-con1 .action-link-wrap1 a {
-  background: #68c950;
-  padding: 8px 25px;
-  border-radius: 4px;
-  color: #FFF;
-  font-weight: bold;
-  font-size: 14px;
-  transition: all 0.3s linear;
-  cursor: pointer;
-  text-decoration: none;
-  margin-right: 10px
-}
-.buttons-con1 .action-link-wrap1 a:hover {
-  /*background: #5A5C6C;*/
-  /*background: #EF4A5B;*/
-  /*background: #007FB2;*/
-  background:rgba(255,255,255,0.3); 
-  transition:0.70s ease all;
-  color: #fff;
-}
-
-.material-icons{
-	color: white;
-}
-
-.tooltip {
-    position: relative;
-    display: inline-block;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 80px;
-    /*background-color: #FFCD3C;*/
-    color: #5A5C6C;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    left: 50%; 
-    margin-left: -40px;
-    margin-top: 20px;
-    font-family: Roboto;
-    font-size: 14px;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    background:rgba(255,255,255,0.3); 
-  	/*transition:0.70s ease all;*/
-  	color: #fff;
-}
-
-.tooltip .tooltiptext::after {
-    content: " ";
-    position: absolute;
-    bottom: 100%; 
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent rgba(255,255,255,0.3) transparent;
-  	/*transition:0.70s ease all;*/
-  	color: #fff;
-}
-
-.question {
-  background-color: #d9faff;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 2em;
-  width : 60%;
-  position: relative;
-  left : 1.5em;
-}
-
-.question .question-headline {
-  font-weight: 500;
-  border-bottom: 2px solid #ddd;
-  font-size: 1.2em;
-  color: red;
-}
-
-
-
-
-
-
-
-
-	</style>
+	<link href="./static/css/quiz.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../static/css/navbar.css" />
 </head>
-<script type="text/javascript">
 
-function view_soln(){
-				for(i=0;i<5;i++){
-					q = document.createElement("p");
-					q.innerHTML = "Q" + (i+1).toString()+")"+ quest_arr[i.toString()]["question"];
-	        		p = document.createElement("p");
-	        		p.innerHTML = "Answer = "+ quest_arr[i.toString()]["rationale"];
-	        		value = quest_arr[i.toString()]["correct"];
-	        		if(document.getElementById(i.toString() + "_" + value).checked){
-	        			p.style.color = "green";
-	        			q.style.color = "green";
-	        		}
-	        		else{
-	        			p.style.color = "red";
-	        			q.style.color = "red";
-	        		}
-	        		soln_div.appendChild(q);
-	        		soln_div.appendChild(p);
-	        	}
-
-}
-
-function view_results(correct_ans){
-  console.log(correct_ans);
-  data_to_send = {"correct_ans":correct_ans};
-  xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-    if (xhr.readyState == 4 && xhr.status == 200){
-        img = document.createElement('img');
-        url = window.URL || window.webkitURL;
-        img.src = url.createObjectURL(xhr.response);
-        img.style.display = "inline";
-
-        document.body.appendChild(img);
-
-        soln_div = document.createElement("div");
-        document.body.appendChild(soln_div);
-		retake = document.createElement("button");
-		soln = document.createElement("button");
-		soln.innerHTML = "View soln";
-		soln.id = "solnbtn";
-		soln.onclick = function viewSoln(){
-			document.body.removeChild(soln);
-			view_soln();
-		}  
-		retake.innerHTML = "Take another Quiz";
-		retake.onclick = function retakequiz(){
-			document.body.removeChild(img);
-			document.body.removeChild(soln_div);
-			document.body.removeChild(retake);
-			if(document.getElementById("solnbtn")){
-				document.body.removeChild(soln);
-			}
-			document.body.removeChild(main_div);
-			start_quiz();
-		}
-
-		document.body.appendChild(retake);
-		document.body.appendChild(soln);
-
-
-       
-   	}
-
-
-
-  }
-xhr.open('POST', '/quiz_results',true);
-xhr.responseType = 'blob';
-xhr.setRequestHeader("Content-Type", 'application/json');
-xhr.send(JSON.stringify(data_to_send)); 
-}
-
-
-
-function display_questions(quest_arr){
-		main_div = document.createElement("div");
-		
-	        for(i=0;i<5;i++){
-			question_div = document.createElement("div");
-			question_div.className='question';
-	        	p = document.createElement("p");
-	        	p.innerHTML = "Q" + (i+1).toString()+")"+ quest_arr[i.toString()]["question"];
-			p.className = "question-headline";
-	        	question_div.appendChild(p);
-
-	        	for(j=0;j<quest_arr[i.toString()]["options"].length;j++){
-	        		op = document.createElement("input");
-	        		op.type = "radio";
-	        		op.value = i.toString() + "_" + quest_arr[i.toString()]["options"][j][0];
-	        		op.id = i.toString() + "_" + quest_arr[i.toString()]["options"][j][0];
-	        		label = document.createElement("label");
-	        		label.innerHTML = quest_arr[i.toString()]["options"][j];
-	        		question_div.appendChild(op);
-	        		question_div.appendChild(label);
-	        		question_div.appendChild(document.createElement("br"));
-	        	}
-			main_div.appendChild(question_div);
-	        }
-	        sub = document.createElement("button");
-	        sub.innerHTML = "Evaluate";
-	        sub.onclick = function evaluate(){
-	        	correct_ans = 0;
-				for(i=0;i<5;i++){
-					value = quest_arr[i.toString()]["correct"];
-					console.log(document.getElementById(i.toString() + "_" + value));
-					if(document.getElementById(i.toString() + "_" + value).checked){
-						correct_ans += 1;
-					}
-				}
-				main_div.style.display="none";
-				view_results(correct_ans);
-			}
-	        main_div.appendChild(sub);
-	        document.body.appendChild(main_div);
-}
-
-function start_quiz(){
-	xhr = new XMLHttpRequest();
-  	xhr.onreadystatechange = function(){
-  		document.getElementById("startbtn").style.display="none";
-	    if (xhr.readyState == 4 && xhr.status == 200){
-	    	quest_arr = JSON.parse(xhr.responseText);
-	        display_questions(quest_arr);
-		}    
-	}
-	xhr.open('GET', '/QuizStart',true);
-	xhr.send(); 
-}
-</script>
 <body>
 <center>
     <div class="m-nav m-red">
@@ -297,14 +46,80 @@ function start_quiz(){
       	</a>
   	  </li>
       <li>
-      	<a>
+      	<a href="/recommend">
       		<div class="tooltip"><i style="font-size:27px;" class="material-icons">contact_support</i>
-      			<span class="tooltiptext">Help</span>
+      			<span class="tooltiptext">Practice</span>
       		</div>
       	</a>
       </li>
     </div>
   </center>
-<button onclick="start_quiz()" id="startbtn">Start Quiz</button>
+<div class="wrapper">
+  <canvas id="geometric" height="600" width="1350">
+  </canvas>
+  <div class="accent">
+  </div>
+</div>
+<h1 id="math-heading"> Mathematics Quiz</h1>
+<p id="math-powered">Powered by Algebra Site</p>
+
+
+<div class="buttons-con">
+    <div class="action-link-wrap">
+      <a onclick="start_quiz()" class="link-button" id="startbtn">Ready, Set, Go</a>
+    </div>
+  </div>
+
+
+<div class="stopwatch" id="stopwatch" role= img>
+            <div class="knob">
+                <div class="handle">
+                    <div class="inner-handle"></div>
+                </div>
+                <div class="base"></div>
+            </div>
+            <div class="timer">
+                <div class="inner-shadow-top-left"></div>
+                <div class="inner-shadow-top-right"></div>
+                <div class="inner-shadow-bottom-left"></div>
+                <div class="inner-timer">
+                    <ul class="hours">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <div class="counter">
+                        <span></span>
+                    </div>
+                    <div class="inner-timer-shadow"></div>
+                </div>
+                <div class="circle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="toggle">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="light">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+
+	<div id="chartContainer" style="background-color: black;height: 300px; width: 30%;"></div>
 </body>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="./static/js/quiz.js"></script>
 </html>
