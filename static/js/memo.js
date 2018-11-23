@@ -6,10 +6,12 @@ window.onbeforeunload = function(){
 };
 
 notepad = {
+    saved: false,
     editContent: function(){
         document.getElementById("memo").contentEditable = true;
         document.getElementById("save").disabled = false;
         document.getElementById("edit").disabled = true;
+        this.saved = false;
     },
     saveContent: function(){
         document.getElementById("memo").contentEditable = false;
@@ -21,13 +23,15 @@ notepad = {
         var innerText = document.getElementById("memo").innerText;
         if(innerText[innerText.length-1] === '\n'){
             innerText = innerText.slice(0,-1) 
-        } 
-        if(localStorage['text'].length < innerText.length){
-            localStorage['text'] = innerText;
-            //alert(localStorage['text']);
         }
+        localStorage['text'] = innerText; 
+        this.saved = true;
     },
     sendToBackEnd: function(){
+        alert(this.saved);
+        if(this.saved === false){
+            return;
+        }
         var req = new XMLHttpRequest();
         req.open('POST', '/memo', false);
         req.onreadystatechange = function(){
