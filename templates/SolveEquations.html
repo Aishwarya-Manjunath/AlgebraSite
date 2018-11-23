@@ -131,16 +131,22 @@
 						<input type = "file" name = "file"  class="custom-file-input" style="margin-top: 5%;"/>
 						<div class="buttons-con1">
 							<div class="action-link-wrap1">
-								<a class = "link-button" href="/uploader">Submit</a>
+								<!--<a class = "link-button" href="/uploader">Submit</a>-->
+								<input type="submit" class="upload"/>
 							</div>
 						</div>
 					</form>
 					{% if filename %}
+					<br><br>
 						<img src="{{filename}}" id="pic">
-						<input type="button" id="go_button" class="upload" value="process" onclick="process_tesseract()" />
-						<div id="ocr_results"> </div>
-						<div id="ocr_status"> </div>
-						<div id="result_ocr"> </div>
+						<div class="buttons-con1">
+							<div class="action-link-wrap1">
+								<input type="button" id="go_button" class="upload" value="Process" onclick="process_tesseract()" />
+							</div>
+						</div>
+						<div id="ocr_results" style="color:white; margin:1%; padding:4%; font-size: 20px;"> </div>
+						<div id="ocr_status" style="color:white; font-size: 20px;"> </div>
+						<div id="result_ocr" style="color:white; margin:1%; padding:4%; font-size: 20px;"> </div>
 					{% endif %}
 				</center>
 			</div>

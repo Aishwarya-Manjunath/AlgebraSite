@@ -97,7 +97,7 @@ function LinearSolve() {
                           if (xhr.readyState == 4 && xhr.status == 200){
                                     value = xhr.response;
                                   res = document.getElementById("result_ocr");
-                                  res.innerHTML = "Result on solving is : x = " + value["x"] +" and y = " + value["y"];
+                                  res.innerHTML = "x = " + value["x"] +" and y = " + value["y"];
                               }
                           }
                           xhr.open('POST', '/solveLinear',true);
@@ -117,7 +117,7 @@ function LinearSolve() {
                           if (xhr.readyState == 4 && xhr.status == 200){
                                 value = xhr.response;
                                   res = document.getElementById("result_ocr");
-                                  res.innerHTML = "Result on solving is : x = " + xhr.response["x1"] + " and " + xhr.response["x2"]; 
+                                  res.innerHTML = "x = " + xhr.response["x1"] + " and " + xhr.response["x2"]; 
                               }
                             }
                           xhr.open('POST', '/solveQuad',true);
