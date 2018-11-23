@@ -39,7 +39,8 @@ body {
     transition: all 0.3s linear;
     cursor: pointer;
     text-decoration: none;
-    margin-right: 10px
+    margin-right: 10px;
+    font-family: Roboto;
 }
   
 .buttons-con1 .action-link-wrap1 a:hover {
