@@ -1,7 +1,8 @@
 .pencil {
+    top: 40%;
     position: fixed;
     width: 50px;
-    margin: 15% 48%;
+    margin: 0 48%;
 }
 
 .eraser {
@@ -80,7 +81,7 @@
 
 .divSquare{
     width:49%; 
-    height:400px; 
+    height: 49%;
     margin:4px; 
     float: left;
 }
