@@ -14,6 +14,14 @@ import os
 import time
 import pymongo
 from quiz import select_questions
+from quiz import sample_questions
+from quiz import data
+import gensim 
+from gensim.test.utils import get_tmpfile
+from gensim.models.doc2vec import Doc2Vec, TaggedDocument
+
+
+model = gensim.models.Doc2Vec.load('saved_doc2vec_model')
 
 UPLOAD_FOLDER = './static/OCR_img/'
 
@@ -247,6 +255,22 @@ def Save_Info():
     print(input_data1)
     #return render_template("profile.html", input_data1)
     return json.dumps(input_data1)#, user = username["_id"], uni = input_data1["university"], qual = input_data1["qualification"], bio = input_data1["biography"])
+
+
+@app.route("/recommend",methods=["GET","POST"])
+@login_required
+def recommend():
+	cursor = mongo.db.recommend.find({"username":username["_id"]})
+	if(mongo.db.recommend.count({"username":username["_id"]})==0):
+		questions=sample_questions()
+		return render_template("recommend.html",practice=questions)
+	recommended_questions = []
+	for document in cursor:
+		for quest in document["questions"]:
+			suggestion = model.docvecs.most_similar(positive=[model.infer_vector(quest)],topn=5)
+			for i in suggestion:
+				recommended_questions.append(data[i[0]])
+	return render_template("recommend.html",practice=recommended_questions[0:5])
 
 if __name__ == "__main__":
     app.run()
