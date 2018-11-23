@@ -222,21 +222,24 @@ shapify('math');
   
 function view_soln(){
 				for(i=0;i<5;i++){
+					soln_innerdiv = document.createElement("div");
+					soln_innerdiv.id = "soln_innerdiv";
 					q = document.createElement("p");
 					q.innerHTML = "Q" + (i+1).toString()+")"+ quest_arr[i.toString()]["question"];
 	        		p = document.createElement("p");
 	        		p.innerHTML = "Answer = "+ quest_arr[i.toString()]["rationale"];
 	        		value = quest_arr[i.toString()]["correct"];
+				p.style.color = "white";
+	        		q.style.color = "white";
 	        		if(document.getElementById(i.toString() + "_" + value).checked){
-	        			p.style.color = "green";
-	        			q.style.color = "green";
+	        			soln_innerdiv.style.backgroundColor = "#68c950";
 	        		}
 	        		else{
-	        			p.style.color = "red";
-	        			q.style.color = "red";
+	        			soln_innerdiv.style.backgroundColor = "#EF3B3A";
 	        		}
-	        		soln_div.appendChild(q);
-	        		soln_div.appendChild(p);
+	        		soln_innerdiv.appendChild(q);
+	        		soln_innerdiv.appendChild(p);
+				soln_div.appendChild(soln_innerdiv);
 	        	}
 
 }
@@ -252,7 +255,7 @@ function view_results(correct_ans){
 	chart_div = document.getElementById("chartContainer");
 	chart_div.style.display = "block";
 	chart_div.style.backgroundColor = "red";
-	document.body.style.backgroundColor = "white";
+	document.body.style.backgroundColor = "#e5e5e5";
 	var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	title: {
@@ -277,6 +280,8 @@ function view_results(correct_ans){
 		soln = document.createElement("button");
 		soln.innerHTML = "View soln";
 		soln.id = "solnbtn";
+		soln.style.position = "relative";
+		soln.style.left ="20em";
 		soln.onclick = function viewSoln(){
 			document.body.removeChild(soln);
 			view_soln();

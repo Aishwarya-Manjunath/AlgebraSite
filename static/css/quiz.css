@@ -24,6 +24,18 @@ body {background:url(http://i.hizliresim.com/68k46P.png)center center fixed no-r
   color: #fff;
 }
 
+
+#soln_innerdiv{
+
+	border-radius: 15px;
+  margin-bottom: 2em;
+  width: 70%;
+
+position: relative;
+
+left: 10em;
+
+}
 .material-icons{
 	color: white;
 }
