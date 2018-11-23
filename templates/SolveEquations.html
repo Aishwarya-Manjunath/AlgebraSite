@@ -1,565 +1,145 @@
 <!DOCTYPE html>
-<html  ng-app="AlgebraSite">
-<head>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<title>SolveEquations</title>
-<style type="text/css">
-		body {background:url(http://i.hizliresim.com/68k46P.png)center center fixed no-repeat; background-size:cover; margin:0; padding:0; background-color: #2F3242;}
+<html lang="en" >
+	<head>
+		<meta charset="UTF-8">
+		<title>pencil - scss</title>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="../static/css/navbar.css">
+		<link rel="stylesheet" href="../static/css/solve.css">
+	</head>
 
-		.m-red {background:#EF3B3A; color:#fff; text-decoration:none;}
-
-		.m-nav {width:100%; min-width:600px; height:55px; display:inline-block; text-align:right;}
-
-		.m-nav input[type="text"] {float:right; background:rgba(255,255,255,0.3); border:none; padding:8px; outline:none; color:#fff; margin-top:10px; margin-right:10px; font-family:"Roboto",Arial sans-serif; height:20px; display:inline-block; transition:0.5s ease all; width:30%; min-width:200px; max-width:600px;}
-
-		.m-nav input[type="text"]:hover {background:rgba(255,255,255,0.5); transition:0.5s ease all;}
-
-		.m-nav input[type="text"]:focus {background:#fff; color:#333; transition:0.5s ease all;}
-
-		.m-nav input::-webkit-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
-
-		.m-nav input::-moz-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
-
-		.m-nav input:-moz-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
-
-		.m-nav input::-o-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
-
-		.m-nav li {list-style:none; float:left; display:inline-block;}
-
-		.m-nav li a {text-decoration:none; padding:6px 9px; transition:0.70s ease all; margin-top:7px; margin-left:7px; display:inline-block; cursor:pointer;}
-
-		.m-nav li a:hover {background:rgba(255,255,255,0.3); transition:0.70s ease all;}
-
-.buttons-con1 .action-link-wrap1 {
-  margin-top: 40px;
-}
-.buttons-con1 .action-link-wrap1 a {
-  background: #68c950;
-  padding: 8px 25px;
-  border-radius: 4px;
-  color: #FFF;
-  font-weight: bold;
-  font-size: 14px;
-  transition: all 0.3s linear;
-  cursor: pointer;
-  text-decoration: none;
-  margin-right: 10px
-}
-.buttons-con1 .action-link-wrap1 a:hover {
-  /*background: #5A5C6C;*/
-  /*background: #EF4A5B;*/
-  /*background: #007FB2;*/
-  background:rgba(255,255,255,0.3); 
-  transition:0.70s ease all;
-  color: #fff;
-}
-
-/*.upload{
-	display: none;
-  background: #68c950;
-  padding: 8px 25px;
-  border-radius: 4px;
-  color: #FFF;
-  font-weight: bold;
-  font-size: 14px;
-  transition: all 0.3s linear;
-  cursor: pointer;
-  text-decoration: none;
-  margin-right: -267px;
-}*/
-
-.material-icons{
-	color: white;
-}
-
-.tooltip {
-    position: relative;
-    display: inline-block;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 80px;
-    /*background-color: #FFCD3C;*/
-    color: #5A5C6C;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    left: 50%; 
-    margin-left: -40px;
-    margin-top: 20px;
-    font-family: Roboto;
-    font-size: 14px;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    background:rgba(255,255,255,0.3); 
-  	/*transition:0.70s ease all;*/
-  	color: #fff;
-}
-
-.tooltip .tooltiptext::after {
-    content: " ";
-    position: absolute;
-    bottom: 100%; 
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent rgba(255,255,255,0.3) transparent;
-  	/*transition:0.70s ease all;*/
-  	color: #fff;
-}
-
-.containera{
-	margin-top: 3%;
-}
-
-.container1{
-	float: left;
-	margin-left: 5%;
-	padding-right: 10%;
-	width: 30%;
-	font-family: Roboto;
-	color: white;
-	text-align: center;
-	font-weight: bold;
-}
-
-.container2{
-	overflow: hidden;
-	padding: 1%;
-	font-family: Roboto;
-	color: white;
-	text-align: center;
-	font-weight: bold;
-}
-
-.containerb{
-	margin-top: 8em;
-}
-
-.container3{
-	float: left;
-	margin-left: 5%;
-	padding-right: 10%;
-	width: 30%;
-	font-family: Roboto;
-	color: white;
-	text-align: center;
-	font-weight: bold;
-	height: 32vh;
-	margin-top: 3vh;
-}
-.container4{
-	overflow: hidden;
-	margin-left: 50%;
-	padding: 1%;
-	font-family: Roboto;
-	color: white;
-	text-align: center;
-	font-weight: bold;
-	margin-top: -13vh;
-}
-
-#Linear_x1{
-	margin: 5%;
-}
-
-#Linear_x2{
-	margin: 5%;
-}
-#Linear_x3{
-	margin: 5%;
-}
-#Linear_x4{
-	margin: 5%;
-}
-
-#Linear_v1{
-	margin: 5%;
-}
-
-#Linear_v2{
-	margin: 5%;
-}
-
-#quad_x1{
-	margin: 5%;
-}
-
-#quad_x2{
-	margin: 5%;
-}
-
-#quad_x3{
-	margin: 5%;
-}
-
-.label1{
-	margin-left: 5%;
-}
-
-#LinearResult{
-	margin-top: 5%;
-}
-
-#QuadResult{
-	margin-top: 5%;
-}
-
-.input-data{
-		  font-size:16px;
-		  font-family: 'Roboto', sans-serif;
-		  line-height:1.6em;
-		  text-align:center;
-		  color:#fff;
-		  /*background: #2F3242;*/
-		  background:rgba(255,255,255,0.3); 
-		  transition:0.70s ease all;
-		  border:0;
-		  border-radius: 4px;
-		  /*border-bottom:1px solid rgba(0,0,0,0.4);*/
-		  
-		  padding:0;
-		  /*margin-left:auto;*/
-		  
-		  width:10vh;
-}
-
-.input-data:focus{
-	  outline:none;
-}
-
-.custom-file-input::-webkit-file-upload-button {
-  visibility: hidden;
-  display: none;
-}
-.custom-file-input::before {
-  content: 'Select some files';
-  display: inline-block;
-  /*background: linear-gradient(top, #f9f9f9, #e3e3e3);*/
-  background: #EF3B3A;
-  transition: all 0.3s linear;
-  /*border: 1px solid #999;*/
-  border-radius: 4px;
-  padding: 5px 72px;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  cursor: pointer;
-  /*text-shadow: 1px 1px #fff;*/
-  font-weight: 700;
-  font-size: 10pt;
-}
-.custom-file-input:hover::before {
-  /*border-color: black;*/
-    /*background: #EF3B3A;*/
-    background:rgba(255,255,255,0.3); 
-  transition:0.70s ease all;
-  color: #fff;
-
-}
-.custom-file-input:active::before {
-  /*background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);*/
-}
-/*.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #EF3B3A;
-    min-width: 60px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    right: 0;
-}
-.dropdown-content a {
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    right: 0;
-}
-
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}*/
-</style>
-</head>
-<script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js'></script>
-<script type="text/javascript">
-function LinearSolve() {
-  x1 = document.getElementById("Linear_x1").value;
-  x2 = document.getElementById("Linear_x2").value;
-  x3 = document.getElementById("Linear_x3").value;
-  x4 = document.getElementById("Linear_x4").value;
-  v1 = document.getElementById("Linear_v1").value;
-  v2 = document.getElementById("Linear_v2").value;
-  data_to_send = {"x1":x1,"x2":x2,"x3":x3,"x4":x4,"v1":v1,"v2":v2};
-
-  xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-  	if (xhr.readyState == 4 && xhr.status == 200){
-	  	value = xhr.response;
-	    res = document.getElementById("LinearResult");
-	    res.innerHTML = "x = " + value["x"] +" and y = " + value["y"];
-	}
-  }
-  xhr.open('POST', '/solveLinear',true);
-  xhr.responseType = 'json';
-  xhr.setRequestHeader("Content-Type", 'application/json');
-  xhr.send(JSON.stringify(data_to_send));      
-}
-
-function QuadSolve() {
-  x1 = document.getElementById("quad_x1").value;
-  x2 = document.getElementById("quad_x2").value;
-  x3 = document.getElementById("quad_x3").value;
-  data_to_send = {"x1":x1,"x2":x2,"x3":x3};
-  xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-
-  	if (xhr.readyState == 4 && xhr.status == 200){
-	  	value = xhr.response;
-	    res = document.getElementById("QuadResult");
-	    res.innerHTML = "x = " + xhr.response["x1"] + " and " + xhr.response["x2"]; 
-	}
-  }
-  xhr.open('POST', '/solveQuad',true);
-  xhr.responseType = 'json';
-  xhr.setRequestHeader("Content-Type", 'application/json');
-  xhr.send(JSON.stringify(data_to_send));      
-}
-
-
-function Plot() {
-  eqn = document.getElementById("plot_eqn").value;
-  data_to_send = {"eqn":eqn};
-  xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-    if (xhr.readyState == 4 && xhr.status == 200){
-        img = document.getElementById('img_plot');
-        url = window.URL || window.webkitURL;
-        img.src = url.createObjectURL(xhr.response);
-        img.style.display = "inline";
-
-        clear_button = document.getElementById("clear_button");
-        clear_button.style.display = "inline";
-
-   	}
-}
-xhr.open('POST', '/solvePlot',true);
-xhr.responseType = 'blob';
-xhr.setRequestHeader("Content-Type", 'application/json');
-xhr.send(JSON.stringify(data_to_send));      
-}
-
-function ClearButton(){
-	img = document.getElementById("img_plot");
-    img.style.display = "none";
-    clear_button = document.getElementById("clear_button");
-    clear_button.style.display = "none";
-}
-
-function process_tesseract(url) {
-	var img = document.getElementById("pic");
-    Tesseract.recognize(img)
-         .then(function(result) {
-            document.getElementById("ocr_results")
-                    .innerText = result.text;
-                    eqn = result.text.split("\n");
-                    if(eqn.length>3){
-                    	//linear
-                    	first = eqn[0].split("=");
-                    	v1 = first[1];
-                    	x1 = first[0].split("+")[0].split("x")[0];
-                    	x2 = first[0].split("+")[1].split("y")[0];
-
-                    	second = eqn[1].split("=");
-                    	v2 = second[1];
-                    	x3 = second[0].split("+")[0].split("x")[0];
-                    	x4 = second[0].split("+")[1].split("y")[0];
-
-                    	data_to_send = {"x1":x1,"x2":x2,"x3":x3,"x4":x4,"v1":v1,"v2":v2};
-
-						xhr = new XMLHttpRequest();
-						xhr.onreadystatechange = function(){
-						if (xhr.readyState == 4 && xhr.status == 200){
-							  	value = xhr.response;
-							    res = document.getElementById("result_ocr");
-							    res.innerHTML = "Result on solving is : x = " + value["x"] +" and y = " + value["y"];
-							}
-						}
-						xhr.open('POST', '/solveLinear',true);
-						xhr.responseType = 'json';
-					    xhr.setRequestHeader("Content-Type", 'application/json');
-						xhr.send(JSON.stringify(data_to_send));
-
-						}
-					else{
-						x1 = eqn[0].split("+")[0].split("x")[0];
-						x2 = eqn[0].split("+")[1].split("x")[0];
-						x3 = eqn[0].split("+")[2].split("=")[0];
-						data_to_send = {"x1":x1,"x2":x2,"x3":x3};
-						xhr = new XMLHttpRequest();
-						xhr.onreadystatechange = function(){
-
-						if (xhr.readyState == 4 && xhr.status == 200){
-	  						value = xhr.response;
-							    res = document.getElementById("result_ocr");
-							    res.innerHTML = "Result on solving is : x = " + xhr.response["x1"] + " and " + xhr.response["x2"]; 
-							}
-  						}
-    					xhr.open('POST', '/solveQuad',true);
-						xhr.responseType = 'json';
-						xhr.setRequestHeader("Content-Type", 'application/json');
-						xhr.send(JSON.stringify(data_to_send));
-
-					}
-		}).progress(function(result) {
-		document.getElementById("ocr_status")
-		.innerText = result["status"] + " (" +
-		(result["progress"] * 100) + "%)";
-		});
-}
-
-</script>
-<body>
-	<center>
-    <div class="m-nav m-red">
-      <div style="float: right;">
-      	<input type="text" placeholder="Search Box" style="float: left;">
-      	<li style="margin-right: 10px;">
-      	<!--<div class="dropdown">-->
-      		<a href="/profile">
-      			<div class="tooltip"><i style="font-size:27px; float: right;" class="material-icons">face</i>
-      				<span class="tooltiptext">Account</span>
-      			</div>
-      		</a>
-      	<!--<div class="dropdown-content">
-    		<a href="#">Logout</a>
-      	</div>
-      </div>-->
-      </li>
-      <div class="buttons-con1" style="margin-top: 10px; float: right; display: inline">
-    <div class="action-link-wrap1" style="margin-top: 0px">
-            <a href="/" class="link-button" style="float: right; font-family: Roboto;">Logout</a>
-        </div>
-    </div>
-      </div>
-      
-      <li>
-      	<a href="/SolveEquations">
-      		<div class="tooltip"><i style="font-size:27px;" class="material-icons">school</i>
-      			<span class="tooltiptext">Solve</span>
-      		</div>
-      	</a>
-      </li>
-      <li>
-      	<a href="/Quiz">
-      		<div class="tooltip"><i style="font-size:27px;" class="material-icons">create</i>
-      			<span class="tooltiptext">Quiz</span>
-      		</div>
-      	</a>
-  	  </li>
-      <li>
-      	<a>
-      		<div class="tooltip"><i style="font-size:27px;" class="material-icons">contact_support</i>
-      			<span class="tooltiptext">Help</span>
-      		</div>
-      	</a>
-      </li>
-    </div>
-  </center>
-<div class="containera">
-<div class="container1">
-	Solve Linear Equations<br>
-	<input type="text" id="Linear_x1" class="input-data" name="x1"/><label>x</label> 
-	<label class="label1">+</label>
-	<input type="text" id="Linear_x2" class="input-data" name="y1"/><label>y</label> 
-	<label class="label1">=</label><input type="text" id="Linear_v1" class="input-data" name="v1"/>
-	<br>
-	<input type="text" id="Linear_x3" class="input-data" name="x2"/><label>x</label> 
-	<label class="label1">+</label>
-	<input type="text" id="Linear_x4" class="input-data" name="y2"/><label>y</label>
-	<label class="label1">=</label><input type="text" id="Linear_v2" class="input-data" name="v2"/>
-	<br>
-	<div class="buttons-con1">
-    <div class="action-link-wrap1">
-		<a class = "link-button" onclick="LinearSolve()">Solve</a>	
-	</div>
-	</div>
-	<div id="LinearResult"></div>
-</div>
-
-<div class="container2">
-	Solve Quadratic Equations <br>
-	<input type="text" id="quad_x1" class="input-data" name="x12"/><label>x<sup>2</sup></label> 
-	<label class="label1">+</label>
-	<input type="text" id="quad_x2" class="input-data" name="x11"/><label>x</label> 
-	<label class="label1">+</label>
-	<input type="text" id="quad_x3" class="input-data" name="c"/><label>=</label> 
-	<label class="label1">0</label>
-	<br>
-	<div class="buttons-con1">
-    <div class="action-link-wrap1">
-		<a class = "link-button" onclick="QuadSolve()">Solve</a>
-	</div>
-	</div>
-	<div id="QuadResult"></div>
-</div>
-</div>
-
-<div class="containerb">
-<div class="container3">
-	Plot graphs for Equations<br>
-	<input type="text" id="plot_eqn" class="input-data" name="plot" style="margin-top: 5%; width: 40%" />
-	<div class="buttons-con1">
-    <div class="action-link-wrap1">
-		<a class="link-button" onclick="Plot()">Plot</a>
-	</div>
-	</div>
-	<br><br>
-	<img src="" id="img_plot"/>
-	<br>
-	<div class="buttons-con1">
-    <div class="action-link-wrap1">
-		<a class="link-button" style="display: none" onclick="ClearButton()" id="clear_button">Clear</a>
-	</div>
-	</div>
-</div>
-
-<div class="container4">
-Solve equation by uploading image<br>
-	<form action = "/uploader" method = "POST" 
-         enctype = "multipart/form-data">
-         	<input type = "file" name = "file"  class="custom-file-input" style="margin-top: 5%;"/>
-         	<!--<label for="file">Choose a file</label>-->
-         <input type = "submit" class="upload"/>
-         <!--<div class="buttons-con1">
-    	 <div class="action-link-wrap1">
-			<a class = "link-button" href="/uploader">Submit</a>
-		 </div>
-		 </div>-->
-	</form>
-	{% if filename %}
-	  <img src="{{filename}}" id="pic">
-	  <input type="button" id="go_button" class="upload" value="process" onclick="process_tesseract()" />
-	  <div id="ocr_results"> </div>
-	  <div id="ocr_status"> </div>
-	  <div id="result_ocr"> </div>
-	{% endif %}
-</div>
-</div>
-</body>
+	<body>
+		<center>
+			<div class="m-nav m-red">
+				<div style="float: right;">
+					<input type="text" placeholder="Search Box" style="float: left;">
+					<li style="margin-right: 10px;">
+						<a>
+							<div class="tooltip"><i style="font-size:27px; float: right;" class="material-icons">face</i>
+							<span class="tooltiptext">Account</span>
+							</div>
+						</a>
+					</li>
+					<div class="buttons-con1" style="margin-top: 10px; float: right; display: inline">
+						<div class="action-link-wrap1" style="margin-top: 0px">
+							<a href="/logout" class="link-button" style="float: right; font-family: Roboto;">Logout</a>
+						</div>
+					</div>
+				</div>
+				<li>
+					<a href="/SolveEquations">
+						<div class="tooltip"><i style="font-size:27px;" class="material-icons">school</i>
+							<span class="tooltiptext">Solve</span>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="/Quiz">
+						<div class="tooltip"><i style="font-size:27px;" class="material-icons">create</i>
+							<span class="tooltiptext">Quiz</span>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a>
+						<div class="tooltip"><i style="font-size:27px;" class="material-icons">contact_support</i>
+							<span class="tooltiptext">Help</span>
+						</div>
+					</a>
+				</li>
+			</div>
+		</center>
+		<div id="container" style="margin-top:3%;">
+			<div class="divSquare">
+				<center>
+					<h2>Solve Linear Equations</h2><br>
+					<input type="text" id="Linear_x1" class="input-data" name="x1"/><label>x</label> 
+					<label class="label1">+</label>
+					<input type="text" id="Linear_x2" class="input-data" name="y1"/><label>y</label> 
+					<label class="label1">=</label><input type="text" id="Linear_v1" class="input-data" name="v1"/>
+					<br>
+					<input type="text" id="Linear_x3" class="input-data" name="x2"/><label>x</label> 
+					<label class="label1">+</label>
+					<input type="text" id="Linear_x4" class="input-data" name="y2"/><label>y</label>
+					<label class="label1">=</label><input type="text" id="Linear_v2" class="input-data" name="v2"/>
+					<br>
+					<div class="buttons-con1">
+						<div class="action-link-wrap1">
+							<a class = "link-button" onclick="LinearSolve()">Solve</a>	
+						</div>
+					</div>
+					<div style="color:white; margin:2%; padding:4%; font-size: 20px;" id="LinearResult"></div>
+				</center>
+				
+			</div>
+			<div class="divSquare">
+				<center>
+					<h2>Solve Quadratic Equations</h2> <br>
+					<input type="text" id="quad_x1" class="input-data" name="x12"/><label>x<sup>2</sup></label> 
+					<label class="label1">+</label>
+					<input type="text" id="quad_x2" class="input-data" name="x11"/><label>x</label> 
+					<label class="label1">+</label>
+					<input type="text" id="quad_x3" class="input-data" name="c"/><label>=</label> 
+					<label class="label1">0</label>
+					<br>
+					<div class="buttons-con1">
+						<div class="action-link-wrap1">
+							<a class = "link-button" onclick="QuadSolve()">Solve</a>
+						</div>
+					</div>
+					<div style="color:white; margin:2%; padding:4%; font-size: 20px;" id="QuadResult"></div>
+				</center>
+			</div>
+			<div class="pencil">
+				<div class="eraser"></div>
+				<div class="covered-wood">
+					<div class="eraser-holder"></div>
+					<div class="wooden-part"></div>
+				</div>
+				<div class="naked-wood"></div>
+				<div class="graphite"></div>
+			</div>
+			<div class="divSquare">
+				<center>
+					<h2>Plot graphs for Equations</h2><br>
+					<input type="text" id="plot_eqn" class="input-data" name="plot" style="margin-top: 5%; width: 40%" />
+					<div class="buttons-con1">
+						<div class="action-link-wrap1">
+							<a class="link-button" onclick="Plot()">Plot</a>
+						</div>
+					</div>
+					<br><br>
+					<img src="" id="img_plot"/>
+					<br>
+					<div class="buttons-con1">
+						<div class="action-link-wrap1">
+							<a class="link-button" style="display: none" onclick="ClearButton()" id="clear_button">Clear</a>
+						</div>
+					</div>
+				</center>
+			</div>
+			<div class="divSquare">
+				<center>
+					<h2>Solve equation by uploading image</h2><br>
+					<form action = "/uploader" method = "POST" enctype = "multipart/form-data">
+						<input type = "file" name = "file"  class="custom-file-input" style="margin-top: 5%;"/>
+						<div class="buttons-con1">
+							<div class="action-link-wrap1">
+								<a class = "link-button" href="/uploader">Submit</a>
+							</div>
+						</div>
+					</form>
+					{% if filename %}
+						<img src="{{filename}}" id="pic">
+						<input type="button" id="go_button" class="upload" value="process" onclick="process_tesseract()" />
+						<div id="ocr_results"> </div>
+						<div id="ocr_status"> </div>
+						<div id="result_ocr"> </div>
+					{% endif %}
+				</center>
+			</div>
+		</div>
+		<script src="../static/js/solve.js"></script>
+		<script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js'></script>
+	</body>
 </html>

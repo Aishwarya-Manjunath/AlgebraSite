@@ -1,0 +1,135 @@
+.pencil {
+    position: fixed;
+    width: 50px;
+    margin: 15% 48%;
+}
+
+.eraser {
+    width: 50px;
+    /*height: 31.25px;*/
+    height: 36.25px;
+    background: linear-gradient(to left, #975f97, #c19bc1);
+    border-radius: 16.6666666667px 16.6666666667px 0 0;
+}
+
+.eraser-holder {
+    width: 50px;
+    height: 20px;
+    background: #dde linear-gradient(0deg, transparent 0%, transparent 20%, black 0%, black 35%, transparent 0%, transparent 42.5%, black 0%, black 57.5%, transparent 0%, transparent 65%, black 0%, black 80%, transparent 0%);
+}
+
+.wooden-part {
+    width: 50px;
+    height: 175px;
+    background: linear-gradient(90deg, #cc0000 25%, red 25%, red 50%, #ff6666 0, #ff6666 75%, #ff3333 0);
+    transform: scaleX(-1);
+/* this is just to get darker side away from light , the better way is to reverse the gradient above */
+}
+
+.naked-wood {
+    width: 0;
+    height: 0;
+    border-top: 70px solid #fbf395;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    position: relative;
+}
+
+.naked-wood:before, .naked-wood:after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-bottom: 12.5px solid #fbf395;
+    border-left: 12.5px solid transparent;
+    border-right: 12.5px solid transparent;
+    top: -82.5px;
+}
+.naked-wood:before {
+    left: -25px;
+}
+
+.graphite {
+    width: 0;
+    height: 0;
+    border-top: 35px solid #111;
+    border-left: 12.5px solid transparent;
+    border-right: 12.5px solid transparent;
+    position: absolute;
+    left: 12.5px;
+    bottom: 0;
+}
+.graphite:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 35px solid #aaa;
+    border-left: 8.3333333333px solid transparent;
+    border-right: 0 solid transparent;
+    display: block;
+    position: absolute;
+    top: -35px;
+    left: -8.3333333333px;
+}
+
+.pencil {
+    filter: drop-shadow(8px 2px 4px rgba(102, 102, 102, 0.6));
+}
+
+.divSquare{
+    width:49%; 
+    height:400px; 
+    margin:4px; 
+    float: left;
+}
+
+.container{
+    height: 100%;
+    width: 100%;
+}
+
+h2{
+    font-family:"Roboto",Arial sans-serif;
+    color: white;
+}
+
+.input-data{
+    font-size:16px;
+    font-family: 'Roboto', sans-serif;
+    line-height:1.6em;
+    margin: 8%;
+    text-align:center;
+    color:#fff;
+    background:rgba(255,255,255,0.3); 
+    transition:0.70s ease all;
+    border:0;
+    border-radius: 4px;
+    width:10vh;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid white;
+}
+
+.input-data:focus{
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+
+label{
+    margin: 1%;
+    color: white;
+}
+
+.result{
+    margin: 2%;
+    color: white;
+}
