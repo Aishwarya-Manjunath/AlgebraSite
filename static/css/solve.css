@@ -135,7 +135,7 @@ label{
     color: white;
 }
 
-.buttons-con1 .action-link-wrap1 {
+.buttons-con .action-link-wrap {
     margin-top: 40px;
 }
 
@@ -160,7 +160,7 @@ label{
   background: #EF3B3A;
   color: #fff;
 }
-.buttons-con1 .action-link-wrap1 a {
+.buttons-con .action-link-wrap a {
   background: #68c950;
   padding: 8px 25px;
   border-radius: 4px;
@@ -174,7 +174,7 @@ label{
   margin-right: 10px;
   font-family: Roboto;
 }
-.buttons-con1 .action-link-wrap1 a:hover {
+.buttons-con .action-link-wrap a:hover {
   /*background: #5A5C6C;*/
   /*background: #EF4A5B;*/
   /*background: #007FB2;*/
