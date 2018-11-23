@@ -9,51 +9,59 @@
 
 <body>
 <center>
-    <div class="m-nav m-red">
-      <div style="float: right;">
-      	<input type="text" placeholder="Search Box" style="float: left;">
-      	<li style="margin-right: 10px;">
-      	<!--<div class="dropdown">-->
-      		<a>
-      			<div class="tooltip"><i style="font-size:27px; float: right;" class="material-icons">face</i>
-      				<span class="tooltiptext">Account</span>
-      			</div>
-      		</a>
-      	<!--<div class="dropdown-content">
-    		<a href="#">Logout</a>
-      	</div>
-      </div>-->
-      </li>
-      <div class="buttons-con1" style="margin-top: 10px; float: right; display: inline">
-    <div class="action-link-wrap1" style="margin-top: 0px">
-            <a href="/logout" class="link-button" style="float: right; font-family: Roboto;">Logout</a>
+      <div class="m-nav m-red">
+        <div style="float: right;">
+          <input type="text" placeholder="Search Box" style="float: left;">
+          <li style="margin-right: 10px;">
+            <a href="/profile">
+              <div class="tooltip"><i style="font-size:27px; float: right;" class="material-icons">face</i>
+              <span class="tooltiptext">Account</span>
+              </div>
+            </a>
+          </li>
+          <div class="buttons-con1" style="margin-top: 10px; float: right; display: inline">
+            <div class="action-link-wrap1" style="margin-top: 0px">
+              <a href="/logout" class="link-button" style="float: right; font-family: Roboto;">Logout</a>
+            </div>
+          </div>
         </div>
-    </div>
+        <li>
+          <a href="/">
+            <div class="tooltip"><i style="font-size:27px;" class="material-icons">home</i>
+              <span class="tooltiptext">Home</span>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="/SolveEquations">
+            <div class="tooltip"><i style="font-size:27px;" class="material-icons">school</i>
+              <span class="tooltiptext">Solve</span>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="/Quiz">
+            <div class="tooltip"><i style="font-size:27px;" class="material-icons">create</i>
+              <span class="tooltiptext">Quiz</span>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="/recommend">
+            <div class="tooltip"><i style="font-size:27px;" class="material-icons">contact_support</i>
+              <span class="tooltiptext">Practice</span>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="/memo">
+            <div class="tooltip"><i style="font-size:27px;" class="material-icons">assignment</i>
+              <span class="tooltiptext">Memo</span>
+            </div>
+          </a>
+        </li>
       </div>
-      
-      <li>
-      	<a href="/SolveEquations">
-      		<div class="tooltip"><i style="font-size:27px;" class="material-icons">school</i>
-      			<span class="tooltiptext">Solve</span>
-      		</div>
-      	</a>
-      </li>
-      <li>
-      	<a href="/Quiz">
-      		<div class="tooltip"><i style="font-size:27px;" class="material-icons">create</i>
-      			<span class="tooltiptext">Quiz</span>
-      		</div>
-      	</a>
-  	  </li>
-      <li>
-      	<a href="/recommend">
-      		<div class="tooltip"><i style="font-size:27px;" class="material-icons">contact_support</i>
-      			<span class="tooltiptext">Practice</span>
-      		</div>
-      	</a>
-      </li>
-    </div>
-  </center>
+    </center>
 <div class="wrapper">
   <canvas id="geometric" height="600" width="1350">
   </canvas>

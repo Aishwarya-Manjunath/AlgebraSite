@@ -109,6 +109,7 @@ def load_user(userid):
 
 
 @app.route("/profile")
+@login_required
 def profile():
     global username
     input_data = {"university":"", "qualification":"", "biography":""}
@@ -137,6 +138,7 @@ def dashboard():
     return render_template("dashboard.html")
 
 @app.route("/memo", methods=['GET','POST'])
+@login_required
 def memo():
     global username
     text = "Scratch Pad!"
@@ -153,10 +155,12 @@ def memo():
     return render_template("memo.html", text=text)
 
 @app.route("/SolveEquations")
+@login_required
 def SolveEquations():
     return render_template("SolveEquations.html")
 
 @app.route('/solveLinear', methods = ['POST','GET'])
+@login_required
 def Linear():
     data = request.json
     result = solve_linear(data)
@@ -173,6 +177,7 @@ def Quad():
 
 
 @app.route('/solvePlot', methods = ['POST','GET'])
+@login_required
 def plot_eqn():
     data = request.json
     formula = data["eqn"]
