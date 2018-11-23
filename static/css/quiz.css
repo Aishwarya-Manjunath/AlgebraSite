@@ -1,29 +1,5 @@
 body {background:url(http://i.hizliresim.com/68k46P.png)center center fixed no-repeat; background-size:cover; margin:0; padding:0; background-color: #2F3242;}
 
-		.m-red {background:#EF3B3A; color:#fff; text-decoration:none;}
-
-		.m-nav {width:100%; min-width:600px; height:55px; display:inline-block; text-align:right;}
-
-		.m-nav input[type="text"] {float:right; background:rgba(255,255,255,0.3); border:none; padding:8px; outline:none; color:#fff; margin-top:10px; margin-right:10px; font-family:"Roboto",Arial sans-serif; height:20px; display:inline-block; transition:0.5s ease all; width:30%; min-width:200px; max-width:600px;}
-
-		.m-nav input[type="text"]:hover {background:rgba(255,255,255,0.5); transition:0.5s ease all;}
-
-		.m-nav input[type="text"]:focus {background:#fff; color:#333; transition:0.5s ease all;}
-
-		.m-nav input::-webkit-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
-
-		.m-nav input::-moz-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
-
-		.m-nav input:-moz-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
-
-		.m-nav input::-o-input-placeholder {color:rgba(255,255,255,0.6); font-family:"Roboto",Arial sans-serif;}
-
-		.m-nav li {list-style:none; float:left; display:inline-block;}
-
-		.m-nav li a {text-decoration:none; padding:6px 9px; transition:0.70s ease all; margin-top:7px; margin-left:7px; display:inline-block; cursor:pointer;}
-
-		.m-nav li a:hover {background:rgba(255,255,255,0.3); transition:0.70s ease all;}
-
 .buttons-con1 .action-link-wrap1 {
   margin-top: 40px;
 }
