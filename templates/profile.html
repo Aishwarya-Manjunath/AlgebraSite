@@ -669,7 +669,7 @@
 		  	<div class="header1">
 		    <img id="profile-picture" src="https://gyazo.com/db9f7075f60979081a9da8ec47453bec.png"/>
 		    <div id="profile-picture-overlay"><h>Full Size</h></div>
-		    <h class="header-text">John Smith, 20 Y/O</h>
+		    <h class="header-text">{{user}}</h>
 			</div>
 		    <div class="content">
 		    <div class="info">
@@ -716,95 +716,31 @@
 		  		<!--<h1><span class="blue">&lt;</span>Table<span class="blue">&gt;</span> <span class="yellow">Responsive</pan></h1>-->
 
 				<table class="table1">
+					<h3>Top 3 scores</h3>
 					<thead>
 						<tr>
-							<th><h1>Rank</h1></th>
-							<th><h1>Quiz Number</h1></th>
+							<th><h1>Sl No</h1></th>
+							<th><h1>Quiz Date</h1></th>
+							<th><h1>Quiz Time</h1></th>
 							<th><h1>Score</h1></th>
-							<th><h1>Average</h1></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Google</td>
-							<td>9518</td>
-							<td>6369</td>
-							<td>01:32:50</td>
-						</tr>
-						<tr>
-							<td>Twitter</td>
-							<td>7326</td>
-							<td>10437</td>
-							<td>00:51:22</td>
-						</tr>
-						<tr>
-							<td>Amazon</td>
-							<td>4162</td>
-							<td>5327</td>
-							<td>00:24:34</td>
-						</tr>
-				    <tr>
-							<td>LinkedIn</td>
-							<td>3654</td>
-							<td>2961</td>
-							<td>00:12:10</td>
-						</tr>
-				    
-				    <tr>
-							<td>GitHub</td>
-							<td>4623</td>
-							<td>3486</td>
-							<td>00:31:52</td>
-						</tr>
+						{% for details in quiz_scores %}
+							<tr>
+							<td>{{loop.index}}</td>
+							<td>{{details["timestamp"].split(" ")[0]}}</td>
+							<td>{{details["timestamp"].split(" ")[1]}}</td>
+							<td>{{details["score"]}}</td>
+							</tr>
+						{% endfor %}
 					</tbody>
 				</table>
 
 		  <!--</div>-->
 		  <!--<div class="container2"></div>
 		</div>-->
-			<table class="table2">
-					<thead>
-						<tr>
-							<th><h1>Rank</h1></th>
-							<th><h1>User Name</h1></th>
-							<th><h1>Score</h1></th>
-							<th><h1>Average</h1></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Google</td>
-							<td>9518</td>
-							<td>6369</td>
-							<td>01:32:50</td>
-						</tr>
-						<tr>
-							<td>Twitter</td>
-							<td>7326</td>
-							<td>10437</td>
-							<td>00:51:22</td>
-						</tr>
-						<tr>
-							<td>Amazon</td>
-							<td>4162</td>
-							<td>5327</td>
-							<td>00:24:34</td>
-						</tr>
-				    <tr>
-							<td>LinkedIn</td>
-							<td>3654</td>
-							<td>2961</td>
-							<td>00:12:10</td>
-						</tr>
-				    
-				    <tr>
-							<td>GitHub</td>
-							<td>4623</td>
-							<td>3486</td>
-							<td>00:31:52</td>
-						</tr>
-					</tbody>
-				</table>
+			
 		  </div>
 
 

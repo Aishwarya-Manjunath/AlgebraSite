@@ -11,8 +11,8 @@ import cmath
 from io import BytesIO 
 import matplotlib.pyplot as plt  
 import os
-import datetime
 import time
+import pymongo
 from quiz import select_questions
 
 app = Flask(__name__)
@@ -100,7 +100,15 @@ def load_user(userid):
 
 @app.route("/profile")
 def profile():
-    return render_template("profile.html")
+    cursor = mongo.db.quiz.find({"username":username["_id"]}).sort("score",pymongo.DESCENDING)
+    quiz_scores = []
+    top_n = 0
+    for document in cursor:
+        if(top_n == 3):
+          break
+        quiz_scores.append(document)
+        top_n += 1
+    return render_template("profile.html",user = username["_id"],quiz_scores=quiz_scores)
 
 @app.route("/logout")
 @login_required
