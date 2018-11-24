@@ -109,6 +109,50 @@
 		  	color: #fff;
 		}
 
+		.tooltip1 {
+		    position: relative;
+		    display: inline-block;
+		}
+
+		.tooltip1 .tooltiptext1 {
+		    visibility: hidden;
+		    width: 80px;
+		    /*background-color: #FFCD3C;*/
+		    color: #5A5C6C;
+		    text-align: center;
+		    padding: 5px 0;
+		    border-radius: 6px;
+		    position: absolute;
+		    z-index: 1;
+		    top: 100%;
+		    left: 50%; 
+		    margin-left: -40px;
+		    margin-top: 10px;
+		    font-family: Roboto;
+		    font-size: 14px;
+		}
+
+		.tooltip1:hover .tooltiptext1 {
+		    visibility: visible;
+		    background:rgba(255,255,255,0.3); 
+		  	/*transition:0.70s ease all;*/
+		  	color: #fff;
+		}
+
+		.tooltip1 .tooltiptext1::after {
+		    content: " ";
+		    position: absolute;
+		    bottom: 100%; 
+		    left: 50%;
+		    margin-left: -5px;
+		    border-width: 5px;
+		    border-style: solid;
+		    border-color: transparent transparent rgba(255,255,255,0.3) transparent;
+		  	/*transition:0.70s ease all;*/
+		  	color: #fff;
+		}
+
+
 		button:focus{
 		  outline:none;
 		}
@@ -734,14 +778,20 @@ chart.render();
 		    <div id="social-media">
 		      <h class="info-type">Get In Touch! <span class="fa fa-hand-o-left"></span></h>
 		      <div id="social-media-links">
-		        <button id="facebook" class="social-media-btn" title="Facebook" tab-index="1">
-		          <span class="fa fa-facebook-official"></span>
+		        <button id="facebook" class="social-media-btn" tab-index="1">
+		          <div class="tooltip1"><span class="fa fa-facebook-official"></span>
+		          	<span class="tooltiptext1">Facebook</span>
+		          </div>
 		        </button>
-		        <button id="instagram" class="social-media-btn" title="Instagram" tab-index="2">
-		          <span class="fa fa-instagram"></span>
+		        <button id="instagram" class="social-media-btn" tab-index="2">
+		          <div class="tooltip1"><span class="fa fa-instagram"></span>
+		          	<span class="tooltiptext1">Instagram</span>
+		          </div>
 		        </button>
-		        <button id="twitter" class="social-media-btn" title="Twitter" tab-index="3">
-		          <span class="fa fa-twitter"></span>
+		        <button id="twitter" class="social-media-btn" tab-index="3">
+		          <div class="tooltip1"><span class="fa fa-twitter"></span>
+		          	<span class="tooltiptext1">Twitter</span>
+		          </div>
 		        </button>
 		      </div>
 		    </div>
