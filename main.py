@@ -17,6 +17,7 @@ from quiz import select_questions
 from quiz import sample_questions
 from quiz import data
 import gensim 
+import random
 from gensim.test.utils import get_tmpfile
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 
@@ -124,7 +125,12 @@ def profile():
         top_n += 1
     for document1 in cursor_account:
         input_data=document1
-    return render_template("profile.html",user = username["_id"],quiz_scores=quiz_scores, input_data=input_data)
+
+    time_scores = []
+    for i in mongo.db.quiz.find({"username":username["_id"]}).sort("timestamp"):
+        time_scores.append(i["score"])
+
+    return render_template("profile.html",user = username["_id"],quiz_scores=quiz_scores, input_data=input_data,time_scores=time_scores)
 
 @app.route("/logout")
 @login_required
@@ -269,13 +275,15 @@ def recommend():
 	if(mongo.db.recommend.count({"username":username["_id"]})==0):
 		questions=sample_questions()
 		return render_template("recommend.html",practice=questions)
+	all_recommend_questions = []
 	recommended_questions = []
 	for document in cursor:
 		for quest in document["questions"]:
-			suggestion = model.docvecs.most_similar(positive=[model.infer_vector(quest)],topn=5)
+			suggestion = model.docvecs.most_similar(positive=[model.infer_vector(quest)],topn=20)
 			for i in suggestion:
-				recommended_questions.append(data[i[0]])
-	return render_template("recommend.html",practice=recommended_questions[0:5])
+				all_recommend_questions.append(data[i[0]])
+	recommended_questions = random.sample(all_recommend_questions,5);
+	return render_template("recommend.html",practice=recommended_questions)
 
 if __name__ == "__main__":
     app.run()

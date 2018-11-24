@@ -619,12 +619,39 @@ h3 {
 				}
 			}
 			
-	</script>
+function line_chart() {
+
+scores_time = Array();
+temp = {{time_scores}};
+for(i=0;i<temp.length;i++){
+	a = temp[i];
+	scores_time.push({y:a});
+}
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Performance Trend"
+	},
+	axisY:{
+		includeZero: false
+	},
+	data: [{        
+		type: "line",       
+		dataPoints: scores_time
+	}]
+});
+chart.render();
+
+}
+
+</script>
 </head>
 
 
-
-	<body>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<body onload="line_chart()">
 	<center>
 			<div class="m-nav m-red">
 				<div style="float: right;">
@@ -753,8 +780,8 @@ h3 {
 				</table>
 
 		  <!--</div>-->
-		  <!--<div class="container2"></div>
-		</div>-->
+		  <div class="container2" style="position:relative;left:2em;"><div id="chartContainer" style="height: 200px; width: 100%;"></div></div>
+		</div>
 			
 		  </div>
 
