@@ -276,20 +276,28 @@ function view_results(correct_ans){
 
         soln_div = document.createElement("div");
         document.body.appendChild(soln_div);
-		retake = document.createElement("button");
-		soln = document.createElement("button");
-		soln.innerHTML = "View soln";
-		soln.id = "solnbtn";
-		soln.style.position = "relative";
-		soln.style.left ="20em";
-		soln.onclick = function viewSoln(){
-			document.body.removeChild(soln);
+		sub_div_soln = document.createElement("div");
+		sub_div_soln.className = "buttons-con";
+		sub_div_div_soln = document.createElement("div");
+		sub_div_div_soln.className = "action-link-wrap";
+
+		sub_a_soln = document.createElement("a");
+		sub_a_soln.className = "link-button";
+	 
+	        sub_a_soln.innerHTML = "View Solutions";
+		sub_div_soln.style.position = "relative";
+		sub_div_soln.style.textAlign ="center";
+		sub_div_div_soln.appendChild(sub_a_soln);
+		sub_div_soln.appendChild(sub_div_div_soln);
+	        soln_div.appendChild(sub_div_soln);
+		document.body.appendChild(soln_div);
+		document.body.appendChild(main_div);       
+		sub_a_soln.onclick = function viewSoln(){
+			soln_div.removeChild(sub_div_soln);
 			view_soln();
 		}  
-		document.body.appendChild(soln);
-
-
-       
+		
+	        
    	}
 
 
