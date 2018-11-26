@@ -22,7 +22,7 @@ from gensim.test.utils import get_tmpfile
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 
 
-model = gensim.models.Doc2Vec.load('saved_doc2vec_model')
+model = gensim.models.Doc2Vec.load('model/saved_doc2vec_model')
 
 UPLOAD_FOLDER = './static/OCR_img/'
 
@@ -221,7 +221,6 @@ def take_quiz():
 @login_required
 def start_quiz():
     questions=select_questions()
-    print(questions)
     return json.dumps(questions)
 
 @app.route("/quiz_results",methods=['GET','POST'])
@@ -229,12 +228,10 @@ def start_quiz():
 def results_quiz():
     global username
     data = request.json
-    print(data["wrong_quest"])
     mongo.db.quiz.insert_one({"username":username["_id"],"score":int(data["correct_ans"]),"timestamp":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())})
 
     mongo.db.recommend.update({"username":username["_id"]},{"username":username["_id"],"questions":data["wrong_quest"]}, upsert=True)
     sizes = [int(data["correct_ans"]),5-int(data["correct_ans"])]
-    print(sizes)
     labels = ["Correct = "+str(sizes[0]),"Wrong = "+str(sizes[1])]
     colors = ["green","red"]
     plt.pie(sizes, labels=labels, colors=colors)
@@ -248,13 +245,9 @@ def results_quiz():
 @app.route("/edit_info",methods=['GET','POST'])
 def Edit_Info():
     global username
-    #input_data = {"uni":"hi", "qual": "99", "bio":"mr"}
     cursor_account = mongo.db.account.find({"username":username["_id"]})
     for document1 in cursor_account:
         input_data=document1
-    print("helo")
-    print(input_data)
-    #return render_template("profile.html",input_data=input_data)#, user = username["_id"], uni = input_data["university"], qual = input_data["qualification"], bio = input_data["biography"])
     return json.dumps(input_data)
 
 @app.route("/save_info",methods=['GET','POST'])
@@ -263,10 +256,7 @@ def Save_Info():
     global username
     input_data1 = request.json
     mongo.db.account.update({"username":username["_id"]},{"username":username["_id"],"university":input_data1["university"],"qualification":input_data1["qualification"],"biography":input_data1["biography"]}, upsert=True)
-    print(input_data1)
-    #return render_template("profile.html", input_data1)
-    return json.dumps(input_data1)#, user = username["_id"], uni = input_data1["university"], qual = input_data1["qualification"], bio = input_data1["biography"])
-
+    return json.dumps(input_data1)
 
 @app.route("/recommend",methods=["GET","POST"])
 @login_required

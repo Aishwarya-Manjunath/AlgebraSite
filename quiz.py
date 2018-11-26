@@ -9,7 +9,7 @@ import json
 
 no_questions = 5
 data = []
-with open("data.json") as f:
+with open("data/data.json") as f:
     for line in f:
         j_content = json.loads(line)
         data.append(j_content)
