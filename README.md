@@ -1,6 +1,11 @@
 # AlgebraSite
 A website to solve equations, crack quizes.
 
+![Home Page](https://github.com/Aishwarya-Manjunath/AlgebraSite/blob/master/extras/1.png)
+
+![Equations Page](https://github.com/Aishwarya-Manjunath/AlgebraSite/blob/master/extras/2.png)
+
+
 ## Pre-requisites
 The following packages are required:<br />
 	1. Python3 <br />
