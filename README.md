@@ -1,9 +1,9 @@
 # AlgebraSite
 A website to solve equations, crack quizes.
 
-![Home Page](https://github.com/Aishwarya-Manjunath/AlgebraSite/blob/master/extras/1.png)
+![Home Page](https://github.com/Aishwarya-Manjunath/AlgebraSite/blob/master/extras/Home.png)
 
-![Equations Page](https://github.com/Aishwarya-Manjunath/AlgebraSite/blob/master/extras/2.png)
+![Equations Page](https://github.com/Aishwarya-Manjunath/AlgebraSite/blob/master/extras/Main.png)
 
 
 ## Pre-requisites
